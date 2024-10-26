@@ -7,12 +7,19 @@ public class BackgroundCreation : MonoBehaviour
 {
     public TileBase bgTile1;
     public TileBase bgTile2;
-    public void Init(int size)
+    public TileBase fog;
+    public void Init(int actualSize, int mapSize)
     {
-        for(int y=0; y<size; y++)
-            for(int x=0; x<size; x++)
+        int area = (mapSize - actualSize) / 2;
+
+        for(int y=0; y<=mapSize; y++)
+            for(int x=0; x<=mapSize; x++)
             {
-                GetComponent<Tilemap>().SetTile(new Vector3Int(x,y,0),(x+y)%2==0 ? bgTile1 : bgTile2);
+                if(x>area && y>area && x<=area+actualSize && y<=area+actualSize)
+                    GetComponent<Tilemap>().SetTile(new Vector3Int(x,y,0),(x+y)%2==0 ? bgTile1 : bgTile2);
+                else
+                    GetComponent<Tilemap>().SetTile(new Vector3Int(x,y,0),fog);
+                
             }
     }
 

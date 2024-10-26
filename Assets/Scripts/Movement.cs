@@ -4,13 +4,14 @@ using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {    
+    private BatteryManagement battery;
     public float moveSpeed = 3f;        // Vitesse de déplacement
     private Vector3 targetPosition;     // La position cible où se déplacer
-    private bool isMoving = false;      // Booléen pour vérifier si le personnage est en déplacement
+    public bool isMoving = false;      // Booléen pour vérifier si le personnage est en déplacement
 
     void Start()
     {
-        // Initialise la position cible sur la position actuelle du personnage
+        battery = GetComponent<BatteryManagement>();    
         targetPosition = transform.position;
     }
 
@@ -52,15 +53,18 @@ public class Movement : MonoBehaviour
     void Move(Vector3 direction)
     {
         targetPosition += direction * GameManagement.instance.transform.lossyScale.x;
-        
-        if(MapController.instance.IsInBackground(targetPosition))
+        MapController.instance.SetPlayerCellPos(targetPosition);
+
+        if(MapController.instance.IsInBackground())
         {
             GameManagement.instance.Action();
+            battery.ChangePower(-1); // ?
             isMoving = true;
         }
         else
         {
             targetPosition = transform.position;
+            MapController.instance.SetPlayerCellPos(targetPosition);
         }
     }
 }

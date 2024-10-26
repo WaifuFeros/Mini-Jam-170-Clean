@@ -69,9 +69,8 @@ public class affichageScript : MonoBehaviour
         score += addNb;
         scoreText.text = "Score : " + score.ToString();
     }
-    void addPower(int addNb)
+    public void ChangePower(int power)
     {
-        power += addNb;
         powerText.text = "Power Left : " + power.ToString();
     }
     void removePower(int removeNb)

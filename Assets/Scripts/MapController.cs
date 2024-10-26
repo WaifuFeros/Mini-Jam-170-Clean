@@ -8,40 +8,51 @@ public class MapController : MonoBehaviour
     public static MapController instance;
     public Tilemap background;
     public Tilemap detritus;
-    public int mapLength;
+    public DetrituData[,] detritusGrid; 
+    public Vector3Int playerCellPos;
+    public int mapActualLength;
+    public int mapMaxLength;
+    public int centerZone;
     void Awake()
     {
         instance = this;
-        Init(mapLength);
+        Init(mapActualLength);
+        playerCellPos = Vector3Int.one * mapActualLength/2;
     }
 
     public void Init(int newLength)
     {
-        mapLength = newLength;
-        switch(mapLength)
-        {
-            case 6:
-            transform.localScale = Vector3.one * 4/3f;
-            break;
-
-            case 8:
-            transform.localScale = Vector3.one;
-            break;
-
-            case 10:
-            transform.localScale = Vector3.one * 0.8f;
-            break;
-        }
-        background.GetComponent<BackgroundCreation>().Init(mapLength);
+        mapActualLength = newLength;
+        centerZone = (mapMaxLength - mapActualLength) / 2;
+        background.GetComponent<BackgroundCreation>().Init(mapActualLength, mapMaxLength);
     }
 
-    public bool IsInBackground(Vector3 pos)
+    
+    public Vector3Int SetPlayerCellPos(Vector3 pos)
     {
-        Vector3Int cellPos = background.WorldToCell(pos);
-        Debug.Log(cellPos);
-        if(cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapLength && cellPos.y < mapLength)
+        playerCellPos = background.WorldToCell(pos);
+        return playerCellPos;
+    }
+    public bool IsInBackground()
+    {
+        if(playerCellPos.x >= centerZone && playerCellPos.y >= centerZone && playerCellPos.x < mapActualLength-centerZone && playerCellPos.y < mapActualLength-centerZone)
             return true;
         else
             return false;
+    }
+
+    public bool CanClean()
+    {
+        if(detritus.HasTile(playerCellPos))
+            return true;
+        else
+            return false;
+    }
+
+    public DetrituData Clean(Vector3Int targetPos)
+    {
+        detritus.SetTile(targetPos, null);
+        return detritusGrid[targetPos.x, targetPos.y];
+        // Get la data etc et ajouter l'énergie au player 
     }
 }
