@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.LightTransport;
@@ -6,24 +8,21 @@ using UnityEngine.Tilemaps;
 public class DetritusApparition : MonoBehaviour
 {
     private Tilemap grid;
-    private int length = MapController.instance.mapLength;
-    public DetrituData banana;
+    private string[] detritusId = new string[] {"SO","SP","MO","MP","GO","GP"};
     void Start()
     {
         grid = GetComponent<Tilemap>();
-        Debug.LogWarning(grid.size);
         Vector3Int pos = new Vector3Int(grid.size.x, grid.size.y,0);
-
-        for(int i = 0; i < 200; i++)
-            Apparition(banana);
     }
 
-    void Apparition(DetrituData data)
+    public void Apparition(string type)
     {
+        DetrituData data = GameManagement.instance.detritus[detritusId.ToList().IndexOf(type)];
+        int length = MapController.instance.mapActualLength + 1;
         Vector3Int spawnGridSize = (data.spawnZone<length/2 ? data.spawnZone : length/2-1) * new Vector3Int(2,2);
 
         Vector3Int origin = data.origin == new Vector3Int(-1,-1) ? 
-        new Vector3Int(Random.Range(1, length - spawnGridSize.x), Random.Range(1, length - spawnGridSize.y)) :
+        new Vector3Int(Random.Range(0, length - spawnGridSize.x), Random.Range(0, length - spawnGridSize.y)) :
         data.origin;
 
         int count = 0;
@@ -35,6 +34,12 @@ public class DetritusApparition : MonoBehaviour
         }
         while(grid.HasTile(pos) && count < 20);
 
-        grid.SetTile(pos, data.tile);
+
+        grid.SetTile(pos, data.tiles[Random.Range(0,data.tiles.Count())]);
+    }
+
+    public void Cleaned(Vector3Int pos)
+    {
+
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -5,7 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class DetrituData : ScriptableObject
 {
-    public TileBase tile;
+    public List<TileBase> tiles;
     public int spawnZone;
     public Vector3Int origin;
+    public int energy; 
 }
