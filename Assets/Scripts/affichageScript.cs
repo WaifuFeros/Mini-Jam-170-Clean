@@ -9,6 +9,7 @@ public class affichageScript : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI powerText;
+    public TextMeshProUGUI info;
 
     public GameObject upgrade_slot_1;
     public GameObject upgrade_slot_2;
@@ -28,7 +29,15 @@ public class affichageScript : MonoBehaviour
 
     private List<GameObject> list_slot = new List<GameObject>();
     private List<Sprite> list_texture = new List<Sprite>();
-
+    private List<string> list_description = new List<string>() {
+        "Description objet 1",
+        "Description objet 2",
+        "Description objet 3",
+        "Description objet 4",
+        "Description objet 5",
+        "Description objet 6",
+    };
+    private List<int> animation_obtenue = new List<int>();
 
     private void Start()
     {
@@ -59,6 +68,7 @@ public class affichageScript : MonoBehaviour
     {
         if (indexSlot < 4)
         {
+            animation_obtenue.Add(nbUpgrade-1);
             list_slot[indexSlot].GetComponent<Image>().sprite = list_texture[nbUpgrade-1];
             list_slot[indexSlot].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             indexSlot++;
@@ -77,6 +87,27 @@ public class affichageScript : MonoBehaviour
     {
         power -= removeNb;
         powerText.text = "Power Left : " + power.ToString();
+    }
+
+    public void upgrade1_info_montre()
+    {
+        info.text = list_description[animation_obtenue[0]];
+    }
+    public void upgrade2_info_montre()
+    {
+        info.text = list_description[animation_obtenue[1]];
+    }
+    public void upgrade3_info_montre()
+    {
+        info.text = list_description[animation_obtenue[2]];
+    }
+    public void upgrade4_info_montre()
+    {
+        info.text = list_description[animation_obtenue[3]];
+    }
+    public void info_cache()
+    {
+        info.text = " ";
     }
 }
 
