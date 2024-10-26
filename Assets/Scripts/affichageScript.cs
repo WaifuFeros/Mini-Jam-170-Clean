@@ -43,13 +43,13 @@ public class affichageScript : MonoBehaviour
         list_texture.Add(upgrade_texture_4);
         list_texture.Add(upgrade_texture_5);
         list_texture.Add(upgrade_texture_6);
-        /*
+        
         addUpgrade(4); 
         addUpgrade(5);
         addUpgrade(1);
         addUpgrade(2);
         addUpgrade(6);
-        */
+        
     }
 
 
