@@ -3,19 +3,26 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
-{    
-    public float moveSpeed = 3f;        // Vitesse de déplacement
-    private Vector3 targetPosition;     // La position cible où se déplacer
-    private bool isMoving = false;      // Booléen pour vérifier si le personnage est en déplacement
+{
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;  // Référence au Sprite Renderer (pour flip l'image)
+    private Animator animator;              // Référence a l'Animator
+
+    public float moveSpeed = 3f;            // Vitesse de déplacement
+    private Vector3 targetPosition;         // La position cible où se déplacer
+    private bool isMoving = false;          // Booléen pour vérifier si le personnage est en déplacement
 
     void Start()
     {
         // Initialise la position cible sur la position actuelle du personnage
         targetPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        animator.SetBool("isMoving", isMoving);
+
         // Déplace le personnage vers la position cible
         if (isMoving)
         {
@@ -41,10 +48,12 @@ public class Movement : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 Move(Vector3.left);
+                spriteRenderer.flipX = true;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 Move(Vector3.right);
+                spriteRenderer.flipX = false;
             }
         }
     }
