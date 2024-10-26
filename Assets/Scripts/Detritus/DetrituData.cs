@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class DetrituData : ScriptableObject
 {
-    public string name;
     public TileBase tile;
     public int spawnZone;
     public Vector3Int origin;

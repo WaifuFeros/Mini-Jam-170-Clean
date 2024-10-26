@@ -5,7 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class DetritusApparition : MonoBehaviour
 {
-    private Tilemap grid; private Vector3Int size = new Vector3Int(8,8);
+    private Tilemap grid;
+    private int length = MapController.instance.mapLength;
     public DetrituData banana;
     void Start()
     {
@@ -19,10 +20,10 @@ public class DetritusApparition : MonoBehaviour
 
     void Apparition(DetrituData data)
     {
-        Vector3Int spawnGridSize = (data.spawnZone<size.x/2 ? data.spawnZone : size.x/2-1) * new Vector3Int(2,2);
+        Vector3Int spawnGridSize = (data.spawnZone<length/2 ? data.spawnZone : length/2-1) * new Vector3Int(2,2);
 
         Vector3Int origin = data.origin == new Vector3Int(-1,-1) ? 
-        new Vector3Int(Random.Range(1, size.x - spawnGridSize.x), Random.Range(1, size.y - spawnGridSize.y)) :
+        new Vector3Int(Random.Range(1, length - spawnGridSize.x), Random.Range(1, length - spawnGridSize.y)) :
         data.origin;
 
         int count = 0;
