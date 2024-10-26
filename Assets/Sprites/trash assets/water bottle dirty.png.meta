@@ -1,130 +1,10 @@
 fileFormatVersion: 2
-guid: eb50c96589242f04fb6427e9283d0b55
+guid: d7e54504155408a47878f49264ce42c1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3964802870717758110
-    second: Garbage Disposal Bot Sprite Sheet_0
-  - first:
-      213: 4491822580253019261
-    second: Garbage Disposal Bot Sprite Sheet_1
-  - first:
-      213: -752640814623882507
-    second: Garbage Disposal Bot Sprite Sheet_2
-  - first:
-      213: 2670254197528639491
-    second: Garbage Disposal Bot Sprite Sheet_3
-  - first:
-      213: -4984362198646630687
-    second: Garbage Disposal Bot Sprite Sheet_4
-  - first:
-      213: -6934240899087833165
-    second: Garbage Disposal Bot Sprite Sheet_5
-  - first:
-      213: 6568444893070834116
-    second: Garbage Disposal Bot Sprite Sheet_6
-  - first:
-      213: 1095648996163818264
-    second: Garbage Disposal Bot Sprite Sheet_7
-  - first:
-      213: -1474795879176459084
-    second: Garbage Disposal Bot Sprite Sheet_8
-  - first:
-      213: 1961344539561826838
-    second: Garbage Disposal Bot Sprite Sheet_9
-  - first:
-      213: -2310747698220435006
-    second: Garbage Disposal Bot Sprite Sheet_10
-  - first:
-      213: -83981643224704453
-    second: Garbage Disposal Bot Sprite Sheet_11
-  - first:
-      213: -1148872908139940042
-    second: Garbage Disposal Bot Sprite Sheet_12
-  - first:
-      213: 5611826719538991171
-    second: Garbage Disposal Bot Sprite Sheet_13
-  - first:
-      213: -8143674157413944365
-    second: Garbage Disposal Bot Sprite Sheet_14
-  - first:
-      213: -5364631712950663794
-    second: Garbage Disposal Bot Sprite Sheet_15
-  - first:
-      213: -3392320082569874491
-    second: Garbage Disposal Bot Sprite Sheet_16
-  - first:
-      213: 2495103343310341828
-    second: Garbage Disposal Bot Sprite Sheet_17
-  - first:
-      213: 2121063296111545065
-    second: Garbage Disposal Bot Sprite Sheet_18
-  - first:
-      213: -1976721874438780363
-    second: Garbage Disposal Bot Sprite Sheet_19
-  - first:
-      213: 6552389655625670602
-    second: Garbage Disposal Bot Sprite Sheet_20
-  - first:
-      213: 289221711803080097
-    second: Garbage Disposal Bot Sprite Sheet_21
-  - first:
-      213: -1603825029604329617
-    second: Garbage Disposal Bot Sprite Sheet_22
-  - first:
-      213: -3671212568695640840
-    second: Garbage Disposal Bot Sprite Sheet_23
-  - first:
-      213: -7712826621938256360
-    second: Garbage Disposal Bot Sprite Sheet_24
-  - first:
-      213: -5814059931627032597
-    second: Garbage Disposal Bot Sprite Sheet_25
-  - first:
-      213: -8034578433276773129
-    second: Garbage Disposal Bot Sprite Sheet_26
-  - first:
-      213: -8835170210593846630
-    second: Garbage Disposal Bot Sprite Sheet_27
-  - first:
-      213: -2396943761889534697
-    second: Garbage Disposal Bot Sprite Sheet_28
-  - first:
-      213: 5479128331859236293
-    second: Garbage Disposal Bot Sprite Sheet_29
-  - first:
-      213: -8839477698656038993
-    second: Garbage Disposal Bot Sprite Sheet_30
-  - first:
-      213: -6101614452128916274
-    second: Garbage Disposal Bot Sprite Sheet_31
-  - first:
-      213: -6654044363141835208
-    second: Garbage Disposal Bot Sprite Sheet_32
-  - first:
-      213: 2518740755948830148
-    second: Garbage Disposal Bot Sprite Sheet_33
-  - first:
-      213: -3555120435385339201
-    second: Garbage Disposal Bot Sprite Sheet_34
-  - first:
-      213: -1305125877296930708
-    second: Garbage Disposal Bot Sprite Sheet_35
-  - first:
-      213: -5169867879976064396
-    second: Garbage Disposal Bot Sprite Sheet_36
-  - first:
-      213: -854152416209079990
-    second: Garbage Disposal Bot Sprite Sheet_37
-  - first:
-      213: 5551579745818677121
-    second: Garbage Disposal Bot Sprite Sheet_38
-  - first:
-      213: 3033602934950489736
-    second: Garbage Disposal Bot Sprite Sheet_39
-  - first:
-      213: -4764883812557571784
-    second: Garbage Disposal Bot Sprite Sheet_40
+      213: 7304697229488137702
+    second: water bottle dirty_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -166,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
