@@ -6,4 +6,8 @@ public class gestionButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/SceneTest");
     }
+    public void exiting()
+    {
+        Application.Quit();
+    }
 }
