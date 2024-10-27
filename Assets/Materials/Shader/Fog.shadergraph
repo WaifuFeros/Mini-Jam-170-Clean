@@ -2237,10 +2237,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1714.4002685546875,
-            "y": -219.2000274658203,
+            "x": -1714.4000244140625,
+            "y": -217.60000610351563,
             "width": 128.0,
-            "height": 93.60000610351563
+            "height": 93.5999984741211
         }
     },
     "m_Slots": [
@@ -2282,7 +2282,7 @@
     "m_ObjectId": "35ee5d91e661443a9de1c5081da8b61f",
     "m_Title": "Mask",
     "m_Position": {
-        "x": -1830.4000244140625,
+        "x": -1830.39990234375,
         "y": -944.800048828125
     }
 }
@@ -3132,8 +3132,8 @@
     "m_ObjectId": "6cbd36fac3b04724ab72cac6007064c6",
     "m_Title": "World Position & Tiling",
     "m_Position": {
-        "x": -2640.000244140625,
-        "y": 124.7999267578125
+        "x": -2640.799560546875,
+        "y": 124.79993438720703
     }
 }
 
@@ -4109,7 +4109,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"e6c439144e79b064ca3e0e549bf94b17\",\"type\":3}}",
+        "m_SerializedTexture": "",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -5324,7 +5324,7 @@
     "m_ObjectId": "dd00ea5c098a405381d1c327fe9f82f8",
     "m_Title": "Second Noise",
     "m_Position": {
-        "x": -1874.4000244140625,
+        "x": -1874.3997802734375,
         "y": 224.79998779296876
     }
 }
@@ -5633,7 +5633,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "ede8c2cbb8c241959bbe78d8fddb9fe0",
     "m_Id": 0,
-    "m_DisplayName": "mask",
+    "m_DisplayName": "Mask",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -5920,8 +5920,8 @@
     "m_ObjectId": "f8ff3dd5c51d45fe843ba02b64fec940",
     "m_Title": "Base Noise",
     "m_Position": {
-        "x": -2128.7998046875,
-        "y": -452.79998779296877
+        "x": -2128.799560546875,
+        "y": -452.7999572753906
     }
 }
 
