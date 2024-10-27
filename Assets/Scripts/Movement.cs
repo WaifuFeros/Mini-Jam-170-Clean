@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
         action = GetComponent<PlayerAction>();
         targetPosition = transform.position;
         animator = GetComponent<Animator>();
+        upgradesManager = GetComponent<UpgradesManager>();
     }
 
     void Update()

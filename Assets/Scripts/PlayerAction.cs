@@ -21,6 +21,7 @@ public class PlayerAction : MonoBehaviour
         mvt = GetComponent<Movement>();
         battery = GetComponent<BatteryManagement>();    
         animator = GetComponent<Animator>();
+        upgradesManager = GetComponent<UpgradesManager>();
     }
 
     // Update is called once per frame
