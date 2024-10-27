@@ -230,14 +230,24 @@ public class affichageScript : MonoBehaviour
     }
 
 
-    public void PrintDetrituInfo(DetrituData detritu, int distance, bool erase = false)
+    public void PrintDetrituInfo((DetrituData,int) detrituData, int distance, bool erase = false)
     {
+        DetrituData detritu = detrituData.Item1;
         if (erase)
         {
             detrituInfo.text = "";
         }
         else
         {
+            string infoText = "";
+            if(detritu.type == "P")
+                infoText = "Piece that can be recycled to repair you and improve your abilities";
+            else
+            {
+                infoText = $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled";
+                infoText += $"\nIt needs {detrituData.Item2} cleanings to be fully cleaned";
+            }
+
             string movesText = "";
             if(distance>0)
                 movesText = $"{distance} moves are required to reach it";
@@ -246,9 +256,7 @@ public class affichageScript : MonoBehaviour
             else
                 movesText = "Press \"Space\" to recycle it";
 
-            detrituInfo.text = 
-            $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled\n"
-            + movesText;
+            detrituInfo.text = infoText + "\n" + movesText;
         }
     }
 }

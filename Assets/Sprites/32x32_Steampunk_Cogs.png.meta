@@ -1,13 +1,85 @@
 fileFormatVersion: 2
-guid: 52f1767df9cd7f1429e15269c6f37163
+guid: eff18ad7a482ed9428a125ad82cbc46f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5808561016299396966
-    second: Baril Radioactif_0
+      213: -7074247584559481189
+    second: 32x32_Steampunk_Cogs_0
   - first:
-      213: 3127306453809094308
-    second: Baril Radioactif_1
+      213: 157369195161461142
+    second: 32x32_Steampunk_Cogs_1
+  - first:
+      213: -3963652078615924786
+    second: 32x32_Steampunk_Cogs_2
+  - first:
+      213: 7491351480687844398
+    second: 32x32_Steampunk_Cogs_3
+  - first:
+      213: 6135741626578394624
+    second: 32x32_Steampunk_Cogs_4
+  - first:
+      213: -3736388263283727995
+    second: 32x32_Steampunk_Cogs_5
+  - first:
+      213: -5518138105322249157
+    second: 32x32_Steampunk_Cogs_6
+  - first:
+      213: 334191394923038385
+    second: 32x32_Steampunk_Cogs_7
+  - first:
+      213: -4702375057093350668
+    second: 32x32_Steampunk_Cogs_8
+  - first:
+      213: 3481102372331012864
+    second: 32x32_Steampunk_Cogs_9
+  - first:
+      213: 7466949566411578339
+    second: 32x32_Steampunk_Cogs_10
+  - first:
+      213: 5275754051178828122
+    second: 32x32_Steampunk_Cogs_11
+  - first:
+      213: -540380281731675599
+    second: 32x32_Steampunk_Cogs_12
+  - first:
+      213: 9001648903020324087
+    second: 32x32_Steampunk_Cogs_13
+  - first:
+      213: -2753955618310876395
+    second: 32x32_Steampunk_Cogs_14
+  - first:
+      213: 7876234160031434146
+    second: 32x32_Steampunk_Cogs_15
+  - first:
+      213: 8587814475061760311
+    second: 32x32_Steampunk_Cogs_16
+  - first:
+      213: 3570613345934279338
+    second: 32x32_Steampunk_Cogs_17
+  - first:
+      213: -5909246826242115735
+    second: 32x32_Steampunk_Cogs_18
+  - first:
+      213: -66357668264974771
+    second: 32x32_Steampunk_Cogs_19
+  - first:
+      213: -4955629406606742756
+    second: 32x32_Steampunk_Cogs_20
+  - first:
+      213: 4277013991355166245
+    second: 32x32_Steampunk_Cogs_21
+  - first:
+      213: -6790791274439167913
+    second: 32x32_Steampunk_Cogs_22
+  - first:
+      213: -3925696809107783215
+    second: 32x32_Steampunk_Cogs_23
+  - first:
+      213: 1327172228626874767
+    second: 32x32_Steampunk_Cogs_24
+  - first:
+      213: -2175158303710004701
+    second: 32x32_Steampunk_Cogs_25
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +121,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
