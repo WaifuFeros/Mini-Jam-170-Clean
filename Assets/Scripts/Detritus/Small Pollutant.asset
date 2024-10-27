@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: SP
   tiles:
-  - {fileID: 11400000, guid: c51091ffe5b847244b18915b2bc9187d, type: 2}
+  - {fileID: 11400000, guid: cb93ed12e757c0d4982c25c3f3945e1b, type: 2}
   - {fileID: 11400000, guid: dd9c71ae3ffd4d446aa50cc7a45009dd, type: 2}
   spawnZone: 1
   origin: {x: -1, y: -1, z: 0}

@@ -155,7 +155,8 @@ public class PlayerAction : MonoBehaviour
         for(int y=0; y<MapController.instance.itemsGrid.GetLength(1); y++)
             for(int x=0; x<MapController.instance.itemsGrid.GetLength(0); x++)    
             {
-                MapController.instance.Cleaned(new Vector3Int(x,y), damages);
+                if(MapController.instance.itemsGrid[x,y].Item1!=null)
+                    MapController.instance.Cleaned(new Vector3Int(x,y), damages);
             }
         
         battery.ChangePower(-5);

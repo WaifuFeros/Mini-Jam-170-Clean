@@ -87,16 +87,17 @@ public class MapController : MonoBehaviour
     public DetrituData RemoveItem(Vector3Int targetPos)
     {
         detritus.SetTile(targetPos, null);
-        return itemsGrid[targetPos.x, targetPos.y].Item1;
+        DetrituData r = itemsGrid[targetPos.x, targetPos.y].Item1;
+        itemsGrid[targetPos.x,targetPos.y].Item1 = null;
+        return r;
     }
 
     public void Cleaned(Vector3Int cellPos, int strength)
     {
-        (DetrituData, int,int) item = itemsGrid[cellPos.x, cellPos.y];
         itemsGrid[cellPos.x, cellPos.y].Item2 -= strength;
-        if(item.Item2<=0)
+        if(itemsGrid[cellPos.x, cellPos.y].Item2<=0)
         {
-            ui.addScore(item.Item1.score);
+            ui.addScore(itemsGrid[cellPos.x, cellPos.y].Item1.score);
             RemoveItem(cellPos);
         }
     }
