@@ -10,9 +10,6 @@ public class PlayerAction : MonoBehaviour
     private Movement mvt;
     private BatteryManagement battery;
     public GameObject sprayBullet;
-
-    // Recycle
-    public bool wantToRecycle = false;
     void Start()
     {
         mvt = GetComponent<Movement>();
@@ -31,29 +28,11 @@ public class PlayerAction : MonoBehaviour
             if(itemRecycle.Count>0) // Can clean the case the player is above
             {
                 // Afficher UI "Espace -> Nettoyer"
-                if(Input.GetKey(KeyCode.Space))
-                    wantToRecycle = true;
 
-                if(Input.GetKeyUp(KeyCode.Space))
+                if(Input.GetKeyDown(KeyCode.Space))
                 {
-                    if(itemRecycle.Count==1)
-                        Recycle(itemRecycle[0]);
-                    else
-                    {
-                        int x=0; int y=0;
-                        if (Input.GetKey(KeyCode.UpArrow))
-                            y=1;
-                        else if (Input.GetKey(KeyCode.DownArrow))
-                            y=-1;
-                        else if (Input.GetKey(KeyCode.LeftArrow))
-                            x=-1;
-                        else if (Input.GetKey(KeyCode.RightArrow))
-                            x=1;
-                        
-                        Vector3Int targetCell = new Vector3Int(MapController.instance.playerCellPos.x+x, MapController.instance.playerCellPos.y+y);
-                        if(wantToRecycle && itemRecycle.Contains(targetCell))
-                            Recycle(targetCell);
-                    }
+                    foreach(var i in itemRecycle)
+                        Recycle(i);
                 }
             }
 
@@ -84,7 +63,6 @@ public class PlayerAction : MonoBehaviour
             ui.addScore(detritu.score);
         }
         GameManagement.instance.Action();
-        wantToRecycle = false;
     }
 
     void SprayBullet(Vector2Int dir)

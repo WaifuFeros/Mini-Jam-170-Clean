@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
                 isMoving = false;
             }
         }
-        else if(!action.wantToRecycle)
+        else
         {
             // Gère l'entrée utilisateur seulement quand le personnage a terminé de se déplacer
             if (Input.GetKeyDown(KeyCode.UpArrow))
