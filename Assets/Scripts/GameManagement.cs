@@ -6,13 +6,16 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     public static GameManagement instance;
-    public affichageScript ui;
+    private affichageScript ui;
+    public int movements = 0; // Player movements count 
     void Awake()
     {
         instance = this;
+        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
+        ui.PrintMovements(movements);
+        ui.addScore(0);
     }
 
-    public int movements = 0; // Player movements count 
     public Dictionary<string,(int,int)> itemFrequences = new Dictionary<string,(int,int)>
     {
         // Frequences : "String" item appears Item1 times every Item2 movements

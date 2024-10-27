@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BatteryManagement : MonoBehaviour
 {
-    public affichageScript ui;
+    private affichageScript ui;
     private Movement movement;
     private Animator animator;
     public int leftPower;
@@ -11,6 +11,8 @@ public class BatteryManagement : MonoBehaviour
     {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
+        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
+        ui.ChangePower(leftPower,maxPower);
     }
     public int ChangePower(int add)
     {
@@ -24,7 +26,7 @@ public class BatteryManagement : MonoBehaviour
         else if(leftPower>maxPower)
             leftPower = maxPower;
         
-        ui.ChangePower(leftPower);
+        ui.ChangePower(leftPower, maxPower);
         return leftPower;
     }
 }
