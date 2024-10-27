@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     private Animator animator;              // Référence a l'Animator
     private BatteryManagement battery;
     public PlayerAction action;
+    public UpgradesManager upgradesManager;
     public float moveSpeed = 3f;            // Vitesse de déplacement
     private Vector3 targetPosition;         // La position cible où se déplacer
     public bool isMoving = false;          // Booléen pour vérifier si le personnage est en déplacement
@@ -31,7 +32,7 @@ public class Movement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             MapController.instance.SetPlayerCellPos(transform.position);
 
-            if(action.ItemRecycle().Count>0 && action.gadgetLevel>=4 && action.wantDash)
+            if(action.ItemRecycle().Count>0 && upgradesManager.gadgetLevel>=4 && action.wantDash)
                 foreach(var item in action.ItemRecycle())
                     action.Recycle(item,false);
 

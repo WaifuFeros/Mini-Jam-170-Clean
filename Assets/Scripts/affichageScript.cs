@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 public class affichageScript : MonoBehaviour
 {
-
+    public UpgradesManager upgradesManager;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI info;
+    public TextMeshProUGUI mvt;
     public TextMeshProUGUI detrituInfo;
     public GameObject upgrade_slot_recyclage;
     public GameObject upgrade_slot_spray;
@@ -57,7 +58,6 @@ public class affichageScript : MonoBehaviour
         "Description objet 14",
         "Description objet 15"
     };
-    private List<int> upgrade_obtenue = new List<int>() {0,0,0,0,0};  // 0 signifie qu'il n'y a pas d'upgrade
 
     private void Start()
     {
@@ -93,15 +93,15 @@ public class affichageScript : MonoBehaviour
             if (upgrade_choice_1.GetComponent<Image>().color[3] == 0)
             {
                 List<int> list_choice = new List<int>() {1,2,3};
-                if (upgrade_obtenue[2] == 2)
+                if (upgradesManager.gadgetLevel == 2)
                 {
                     list_choice.Remove(1);
                 }
-                if (upgrade_obtenue[3] == 2)
+                if (upgradesManager.gadgetLevel == 2)
                 {
                     list_choice.Remove(2);
                 }
-                if (upgrade_obtenue[4] == 1)
+                if (upgradesManager.gadgetLevel == 5)
                 {
                     list_choice.Remove(3);
                 }
@@ -173,36 +173,36 @@ public class affichageScript : MonoBehaviour
 
     public void addUpgrade(int nbUpgrade)
     {
-        if (nbUpgrade == 1 && nbUpgrade<5)
+        if (nbUpgrade == 1 && nbUpgrade<5) // Recycle
         {
-            upgrade_obtenue[nbUpgrade - 1] += 1; 
+            upgradesManager.ChangeLevel("Recycle");
             list_slot[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (nbUpgrade == 2 && nbUpgrade < 5)
+        else if (nbUpgrade == 2 && nbUpgrade < 5) // Spray
         {
-            upgrade_obtenue[nbUpgrade - 1] += 1;
+            upgradesManager.ChangeLevel("Spray");
             list_slot[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (nbUpgrade == 3 && nbUpgrade < 2)
+        else if (nbUpgrade == 3 && nbUpgrade < 2) // Bombe
         {
-            upgrade_obtenue[nbUpgrade - 1] += 1;
+            upgradesManager.ChangeLevel("Gadget");
             list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (nbUpgrade == 4 && nbUpgrade < 2)
+        else if (nbUpgrade == 4 && nbUpgrade < 2) // Propulseur
         {
-            upgrade_obtenue[nbUpgrade - 1] += 1;
+            upgradesManager.ChangeLevel("Gadget");
             list_slot[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (nbUpgrade == 5 && nbUpgrade < 1)
+        else if (nbUpgrade == 5 && nbUpgrade < 1) // Téléporteur
         {
-            upgrade_obtenue[nbUpgrade - 1] += 1;
+            upgradesManager.ChangeLevel("Gadget");
             list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
 
     }
     public void removeUpgrade(int slotUpgrade)
     {
-        upgrade_obtenue[slotUpgrade - 1] = 0;
+        // upgrade_obtenue[slotUpgrade - 1] = 0;
         list_slot[slotUpgrade - 1].GetComponent<Image>().color = new Color(255, 255, 255, 0);
     }
 
@@ -217,30 +217,30 @@ public class affichageScript : MonoBehaviour
     }
     public void upgrade1_info_montre()
     {
-        if (upgrade_obtenue[0] != 0)
+        if (upgradesManager.recyclingLevel != 0)
         {
-            info.text = list_description[upgrade_obtenue[0] - 1];
+            info.text = list_description[upgradesManager.recyclingLevel - 1];
         }
     }
     public void upgrade2_info_montre()
     {
-        if (upgrade_obtenue[1] != 0)
+        if (upgradesManager.sprayLevel != 0)
         {
-            info.text = list_description[upgrade_obtenue[1] - 1];
+            info.text = list_description[upgradesManager.sprayLevel - 1];
         }
     }
     public void upgrade3_info_montre()
     {
-        if (upgrade_obtenue[2] != 0)
+        if (upgradesManager.gadgetLevel != 0)
         {
-            info.text = list_description[upgrade_obtenue[2] - 1];
+            info.text = list_description[upgradesManager.gadgetLevel - 1];
         }
     }
     public void upgrade4_info_montre()
     {
-        if (upgrade_obtenue[3] != 0)
+        if (upgradesManager.gadgetLevel != 0)
         {
-            info.text = list_description[upgrade_obtenue[3] - 1];
+            info.text = list_description[upgradesManager.gadgetLevel - 1];
         }
     }
     public void choice_1_info()

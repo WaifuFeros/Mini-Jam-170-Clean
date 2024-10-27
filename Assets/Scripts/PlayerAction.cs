@@ -12,15 +12,10 @@ public class PlayerAction : MonoBehaviour
     private Animator animator;              // Référence a l'Animator
     private BatteryManagement battery;
     public GameObject sprayBullet;
-
+    private UpgradesManager upgradesManager;
     // Actions
     public bool wantDash = false;
     public bool wantTeleport = false;
-
-    // A enlever quand victor aura fait le upgrade manager
-    public int sprayLevel;
-    public int gadgetLevel;
-    public int recycleLevel;
     void Start()
     {
         mvt = GetComponent<Movement>();
@@ -49,24 +44,24 @@ public class PlayerAction : MonoBehaviour
 
             #region Spray action (Inputs ZQSD)
             if(Input.GetKeyDown(KeyCode.W))
-                SprayBullet(Vector2Int.up,transform,sprayLevel);
+                SprayBullet(Vector2Int.up,transform,upgradesManager.sprayLevel);
             else if(Input.GetKeyDown(KeyCode.A))
-                SprayBullet(Vector2Int.left,transform,sprayLevel);
+                SprayBullet(Vector2Int.left,transform,upgradesManager.sprayLevel);
             else if(Input.GetKeyDown(KeyCode.D))
-                SprayBullet(Vector2Int.right,transform,sprayLevel);
+                SprayBullet(Vector2Int.right,transform,upgradesManager.sprayLevel);
             else if(Input.GetKeyDown(KeyCode.S))
-                SprayBullet(Vector2Int.down,transform,sprayLevel);
+                SprayBullet(Vector2Int.down,transform,upgradesManager.sprayLevel);
             #endregion
 
             #region Bomb action (Input Mouse button or Shortuct G)
-            if(Input.GetKeyDown(KeyCode.G) && gadgetLevel>0)
+            if(Input.GetKeyDown(KeyCode.G) && upgradesManager.gadgetLevel>=1)
             {
                 Bomb();
             }
             #endregion
 
             #region Dash action (Input Mouse button or Shortcut H)
-            if(Input.GetKey(KeyCode.H) && gadgetLevel>1)
+            if(Input.GetKey(KeyCode.H) && upgradesManager.gadgetLevel>=2)
             {
                 wantDash = true;
                 // See movement script where the dash is managed
@@ -74,7 +69,7 @@ public class PlayerAction : MonoBehaviour
             #endregion
 
             #region Teleport action (Input Mouse button or Shortcut J)
-            if(Input.GetKeyDown(KeyCode.J) && gadgetLevel>=5)
+            if(Input.GetKeyDown(KeyCode.J) && upgradesManager.gadgetLevel>=5)
             {
                 wantTeleport = true;
             }
@@ -94,8 +89,7 @@ public class PlayerAction : MonoBehaviour
         DetrituData detritu = MapController.instance.RemoveItem(targetPos);
         if(detritu.type == "P")
         {
-            // Amélioration
-            Debug.Log("Amelioration");
+            ui.chooseUpgrade();
         }
         else
         {
@@ -107,7 +101,7 @@ public class PlayerAction : MonoBehaviour
 
     public List<Vector3Int> ItemRecycle()
     {
-        bool arm = recycleLevel==5 ? true : false;
+        bool arm = upgradesManager.recyclingLevel==5 ? true : false;
         List<Vector3Int> items = new List<Vector3Int>();
         for(int y= arm?-1:0; y <= (arm?1:0);y++)
             for(int x = arm?-1:0; x <=(arm?1:0); x++)
@@ -154,7 +148,7 @@ public class PlayerAction : MonoBehaviour
 
     public void Bomb()
     {
-        int damages = gadgetLevel>2 ? 3 : 1;
+        int damages = upgradesManager.gadgetLevel>2 ? 3 : 1;
         for(int y=0; y<MapController.instance.itemsGrid.GetLength(1); y++)
             for(int x=0; x<MapController.instance.itemsGrid.GetLength(0); x++)    
             {
