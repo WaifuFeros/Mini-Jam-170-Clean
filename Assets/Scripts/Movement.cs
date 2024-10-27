@@ -29,10 +29,16 @@ public class Movement : MonoBehaviour
         if (isMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            MapController.instance.SetPlayerCellPos(transform.position);
+
+            if(action.ItemRecycle().Count>0 && action.gadgetLevel>=4 && action.wantDash)
+                foreach(var item in action.ItemRecycle())
+                    action.Recycle(item,false);
 
             // Vérifie si le personnage est arrivé à la position cible
             if (transform.position == targetPosition)
             {
+                Debug.Log(MapController.instance.playerCellPos);
                 isMoving = false;
                 action.wantDash = false;
             }
@@ -77,10 +83,9 @@ public class Movement : MonoBehaviour
         }
         
         Vector3 worldDirection = direction;
-        targetPosition += worldDirection * GameManagement.instance.transform.lossyScale.x;
-        MapController.instance.SetPlayerCellPos(targetPosition);
-
-        if(MapController.instance.IsInBackground(MapController.instance.playerCellPos))
+        targetPosition = transform.position + worldDirection * GameManagement.instance.transform.lossyScale.x;
+        
+        if(MapController.instance.IsInBackground(MapController.instance.background.WorldToCell(targetPosition)))
         {
             GameManagement.instance.Action();
             battery.ChangePower(-1); // ?

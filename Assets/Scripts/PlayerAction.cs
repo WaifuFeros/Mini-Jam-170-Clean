@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class PlayerAction : MonoBehaviour
     private BatteryManagement battery;
     public GameObject sprayBullet;
 
-    // Dash action
+    // Actions
     public bool wantDash = false;
+    public bool wantTeleport = false;
 
     // A enlever quand victor aura fait le upgrade manager
     public int sprayLevel;
@@ -33,8 +35,6 @@ public class PlayerAction : MonoBehaviour
         {
             #region Recycle action (Input Space)
             List<Vector3Int> itemRecycle = ItemRecycle();
-            foreach(var t in itemRecycle)
-                Debug.Log(t);
             if(itemRecycle.Count>0) // Can clean the case the player is above
             {
                 // Afficher UI "Espace -> Nettoyer"
@@ -69,15 +69,28 @@ public class PlayerAction : MonoBehaviour
             if(Input.GetKey(KeyCode.H) && gadgetLevel>1)
             {
                 wantDash = true;
+                // See movement script where the dash is managed
+            }
+            #endregion
+
+            #region Teleport action (Input Mouse button or Shortcut J)
+            if(Input.GetKeyDown(KeyCode.J) && gadgetLevel>=5)
+            {
+                wantTeleport = true;
+            }
+            if(Input.GetMouseButtonDown(0) && wantTeleport && MapController.instance.IsInBackground(MapController.instance.MouseCellPos()))
+            {
+                Teleport();
             }
             #endregion
         }
 
     }
 
-    void Recycle(Vector3Int targetPos)
+    public void Recycle(Vector3Int targetPos, bool anim = true)
     {
-        animator.SetTrigger("Collect");
+        if(anim)
+            animator.SetTrigger("Collect");
         DetrituData detritu = MapController.instance.RemoveItem(targetPos);
         if(detritu.type == "P")
         {
@@ -147,5 +160,15 @@ public class PlayerAction : MonoBehaviour
             {
                 MapController.instance.Cleaned(new Vector3Int(x,y), damages);
             }
+    }
+
+    public void Teleport()
+    {
+        Vector2 p = MapController.instance.background.CellToWorld(MapController.instance.MouseCellPos());
+
+        Vector2 pos = new Vector2(p.x+0.4f,p.y+0.62f);
+        transform.position = pos;
+        MapController.instance.SetPlayerCellPos(pos);
+        wantTeleport = false;
     }
 }

@@ -29,9 +29,9 @@ public class MapController : MonoBehaviour
     public void Init(int newLength)
     {
         mapActualLength = newLength;
-        itemsGrid = new (DetrituData,int)[mapMaxLength,mapMaxLength];
+        itemsGrid = new (DetrituData,int)[mapMaxLength+1,mapMaxLength+1];
         centerZone = (mapMaxLength - mapActualLength) / 2;
-        background.GetComponent<BackgroundCreation>().Init(mapActualLength, mapMaxLength);
+        // Fog gestion
     }
 
     void Update()
