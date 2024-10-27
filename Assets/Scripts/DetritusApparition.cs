@@ -32,7 +32,7 @@ public class DetritusApparition : MonoBehaviour
             pos = new Vector3Int(origin.x + Random.Range(0,spawnGridSize.x), origin.y + Random.Range(0,spawnGridSize.y));
             count++;
         }
-        while(grid.HasTile(pos) && count < 20);
+        while((grid.HasTile(pos) || MapController.instance.playerCellPos==pos) && count < 20);
 
         if(count < 20)
         {

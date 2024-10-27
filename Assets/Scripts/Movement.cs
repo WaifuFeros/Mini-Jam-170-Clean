@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour
                 // Vérifie si le personnage est arrivé à la position cible
                 if (transform.position == targetPosition)
                 {
-                    Debug.Log(MapController.instance.playerCellPos);
+                    // Debug.Log(MapController.instance.playerCellPos);
                     int powerUsed = action.wantDash ? -3 : -1;
                     battery.ChangePower(powerUsed);
                     isMoving = false;

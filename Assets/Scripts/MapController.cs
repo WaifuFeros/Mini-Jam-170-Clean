@@ -87,7 +87,9 @@ public class MapController : MonoBehaviour
     public DetrituData RemoveItem(Vector3Int targetPos)
     {
         detritus.SetTile(targetPos, null);
-        return itemsGrid[targetPos.x, targetPos.y].Item1;
+        DetrituData r = itemsGrid[targetPos.x, targetPos.y].Item1;
+        itemsGrid[targetPos.x,targetPos.y].Item1 = null;
+        return r;
     }
 
     public void Cleaned(Vector3Int cellPos, int strength)
@@ -95,6 +97,10 @@ public class MapController : MonoBehaviour
         itemsGrid[cellPos.x, cellPos.y].Item2 -= strength;
         if(itemsGrid[cellPos.x, cellPos.y].Item2<=0)
         {
+<<<<<<< HEAD
+=======
+            ui.addScore(itemsGrid[cellPos.x, cellPos.y].Item1.score);
+>>>>>>> parent of 801de7e (Revert "Merge branch 'main' of https://github.com/WaifuFeros/Mini-Jam-170-Clean")
             RemoveItem(cellPos);
         }
     }

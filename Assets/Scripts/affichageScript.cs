@@ -350,9 +350,14 @@ public class affichageScript : MonoBehaviour
             if(data.type == "P")
                 pieces++;
         }
-
         detrituInfo.text = $"Press \"Space\" to recycle.\nYou will gain {energy} power and {score} score"
+<<<<<<< HEAD
         + (pieces==0 ? "" : $"and {pieces} pieces");
+=======
+        + (pieces==0 ? "" : $"\nand {pieces} piece");
+        detrituSprite.gameObject.SetActive(true);
+        detrituSprite.sprite = recycling;
+>>>>>>> parent of 801de7e (Revert "Merge branch 'main' of https://github.com/WaifuFeros/Mini-Jam-170-Clean")
     }
     public void PrintDetrituMouseInfo((DetrituData,int) detrituData, int distance)
     {
@@ -360,7 +365,8 @@ public class affichageScript : MonoBehaviour
 
         string infoText = "";
         if(detritu.type == "P")
-            infoText = "Piece that can be recycled to repair you and improve your abilities";
+            infoText = "Fragile piece that can be recycled to repair you and improve your abilities"
+            + $"\nDistance : " + (distance>0 ? $"{distance}" : $"Too far (need {-distance} more moves)");
         else
         {
             infoText = $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled";
