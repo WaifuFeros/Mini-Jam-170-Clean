@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     public PlayerAction action;
     public UpgradesManager upgradesManager;
     public bool isDead = false;
-    public bool invicible;
     public float moveSpeed = 3f;            // Vitesse de déplacement
     private Vector3 targetPosition;         // La position cible où se déplacer
     public bool isMoving = false;          // Booléen pour vérifier si le personnage est en déplacement
@@ -45,7 +44,7 @@ public class Movement : MonoBehaviour
                 // Vérifie si le personnage est arrivé à la position cible
                 if (transform.position == targetPosition)
                 {
-                    // Debug.Log(MapController.instance.playerCellPos);
+                    Debug.Log(MapController.instance.playerCellPos);
                     int powerUsed = action.wantDash ? -3 : -1;
                     battery.ChangePower(powerUsed);
                     isMoving = false;

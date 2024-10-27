@@ -8,12 +8,12 @@ using UnityEngine.Tilemaps;
 public class MapController : MonoBehaviour
 {
     public static MapController instance;
-    private affichageScript ui;
+    public affichageScript ui;
     public Tilemap background;
     public Tilemap detritus;
     public Transform player;
     private PlayerAction playerAction;
-    public (DetrituData,int,int)[,] itemsGrid; 
+    public (DetrituData,int)[,] itemsGrid; 
     public Vector3Int playerCellPos;
     public int mapActualLength;
     public int mapMaxLength;
@@ -28,8 +28,7 @@ public class MapController : MonoBehaviour
         MapInit(mapActualLength);
         playerCellPos = Vector3Int.one * mapActualLength/2;
         playerAction = player.GetComponent<PlayerAction>();
-        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
-        itemsGrid = new (DetrituData,int,int)[mapMaxLength+1,mapMaxLength+1];
+        itemsGrid = new (DetrituData,int)[mapMaxLength+1,mapMaxLength+1];
     }
 
     public void MapInit(int newLength)
@@ -87,9 +86,7 @@ public class MapController : MonoBehaviour
     public DetrituData RemoveItem(Vector3Int targetPos)
     {
         detritus.SetTile(targetPos, null);
-        DetrituData r = itemsGrid[targetPos.x, targetPos.y].Item1;
-        itemsGrid[targetPos.x,targetPos.y].Item1 = null;
-        return r;
+        return itemsGrid[targetPos.x, targetPos.y].Item1;
     }
 
     public void Cleaned(Vector3Int cellPos, int strength)
@@ -97,7 +94,6 @@ public class MapController : MonoBehaviour
         itemsGrid[cellPos.x, cellPos.y].Item2 -= strength;
         if(itemsGrid[cellPos.x, cellPos.y].Item2<=0)
         {
-            ui.addScore(itemsGrid[cellPos.x, cellPos.y].Item1.score);
             RemoveItem(cellPos);
         }
     }

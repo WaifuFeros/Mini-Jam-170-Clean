@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAction : MonoBehaviour
 {
-    private affichageScript ui;
+    public affichageScript ui;
     private Movement mvt;
     private Animator animator;              // Référence a l'Animator
     private BatteryManagement battery;
@@ -23,7 +23,6 @@ public class PlayerAction : MonoBehaviour
         battery = GetComponent<BatteryManagement>();    
         animator = GetComponent<Animator>();
         upgradesManager = GetComponent<UpgradesManager>();
-        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
     }
 
     // Update is called once per frame
@@ -166,8 +165,7 @@ public class PlayerAction : MonoBehaviour
         for(int y=0; y<MapController.instance.itemsGrid.GetLength(1); y++)
             for(int x=0; x<MapController.instance.itemsGrid.GetLength(0); x++)    
             {
-                if(MapController.instance.itemsGrid[x,y].Item1!=null)
-                    MapController.instance.Cleaned(new Vector3Int(x,y), damages);
+                MapController.instance.Cleaned(new Vector3Int(x,y), damages);
             }
         
         battery.ChangePower(-5);
