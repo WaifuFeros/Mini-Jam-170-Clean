@@ -601,10 +601,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -659,6 +659,7 @@ MonoBehaviour:
   bombe: {fileID: 21300000, guid: 50203fdf9ac529949ba448915bfe53eb, type: 3}
   dash: {fileID: -5247759904997254191, guid: 58a214d5695babc45bbe5da01de5003c, type: 3}
   tp: {fileID: 1576680246992455245, guid: b618329f1254fdb4ebb834c42b10371d, type: 3}
+  croix: {fileID: -7764659627971493248, guid: a78e46971261a2442a537a9c0e234d77, type: 3}
 --- !u!1 &2422976935976946848
 GameObject:
   m_ObjectHideFlags: 0

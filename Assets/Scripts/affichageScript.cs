@@ -27,6 +27,7 @@ public class affichageScript : MonoBehaviour
     public Sprite bombe;
     public Sprite dash;
     public Sprite tp;
+    public Sprite croix;
 
 
     private int score = 0;
@@ -130,7 +131,7 @@ public class affichageScript : MonoBehaviour
 
     public void chooseUpgrade()
     {
-        if (choix_1_impossible && choix_2_impossible && choix_3_impossible)
+        if (!choix_1_impossible || !choix_2_impossible || !choix_3_impossible)
         {
             chooseUpgradeState = "apparition";
         }
@@ -193,6 +194,10 @@ public class affichageScript : MonoBehaviour
                 list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             }
         }
+        if (choix_1_impossible) { upgrade_choice_1.GetComponent<Image>().sprite = croix; }
+        if (choix_2_impossible) { upgrade_choice_2.GetComponent<Image>().sprite = croix; }
+        if (choix_3_impossible) { upgrade_choice_3.GetComponent<Image>().sprite = croix; }
+
     }
     public void addScore(int addNb)
     {
