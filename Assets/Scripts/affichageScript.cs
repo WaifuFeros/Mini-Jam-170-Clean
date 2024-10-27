@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 public class affichageScript : MonoBehaviour
 {
-    public UpgradesManager upgradesManager;
+    private UpgradesManager upgradesManager;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI info;
@@ -61,6 +61,7 @@ public class affichageScript : MonoBehaviour
 
     private void Start()
     {
+        upgradesManager = GameObject.FindGameObjectWithTag("Player").GetComponent<UpgradesManager>();
         list_slot.Add(upgrade_slot_recyclage);
         list_slot.Add(upgrade_slot_spray);
         list_slot.Add(upgrade_slot_bombe);
@@ -162,9 +163,13 @@ public class affichageScript : MonoBehaviour
         }
         else if (nbUpgrade == 3) // Bombe
         {
+            Debug.Log("1");
             upgradesManager.ChangeLevel("Gadget");
+
+            list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             if (upgradesManager.gadgetLevel == 1)
             {
+                Debug.Log("2");
                 list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             }
             if (upgradesManager.gadgetLevel == 2)
