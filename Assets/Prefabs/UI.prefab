@@ -657,8 +657,8 @@ MonoBehaviour:
   upgrade_choice_3: {fileID: 40501099002974154}
   panel: {fileID: 526765994463648914}
   bombe: {fileID: 21300000, guid: 50203fdf9ac529949ba448915bfe53eb, type: 3}
-  dash: {fileID: 9196776383401192100, guid: 289d2ee44fa83ce469346c573338dada, type: 3}
-  tp: {fileID: -903972098702951516, guid: 25faf5e49e96e8049b1270007ac18091, type: 3}
+  dash: {fileID: -5247759904997254191, guid: 58a214d5695babc45bbe5da01de5003c, type: 3}
+  tp: {fileID: 1576680246992455245, guid: b618329f1254fdb4ebb834c42b10371d, type: 3}
 --- !u!1 &2422976935976946848
 GameObject:
   m_ObjectHideFlags: 0
