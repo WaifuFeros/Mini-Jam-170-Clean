@@ -31,13 +31,25 @@ public class GameManagement : MonoBehaviour
 
     void Init()
     {
-
     }
 
     public void Action()
     {
         movements++;
         ui.PrintMovements(movements);
+
+        if(movements==1)
+        {
+            AddDetritus("SO");
+        }
+
+        for(int y=0; y<MapController.instance.itemsGrid.GetLength(1); y++)
+            for(int x=0; x<MapController.instance.itemsGrid.GetLength(0); x++)    
+            {
+                if(MapController.instance.itemsGrid[x,y].Item1 != null && MapController.instance.itemsGrid[x,y].Item1.type == "BEBER")
+                    MapController.instance.itemsGrid[x,y].Item2--;
+            }
+
         DifficultyEvolution();
 
         // Spawn detritu

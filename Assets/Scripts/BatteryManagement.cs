@@ -15,7 +15,7 @@ public class BatteryManagement : MonoBehaviour
     public int ChangePower(int add)
     {
         leftPower += add;
-        if(leftPower <= 0)
+        if(leftPower <= 0 && !movement.invicible)
         {
             animator.SetTrigger("Death");
             movement.isDead = true;

@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 7220685075629644579}
   m_Layer: 5
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,7 +587,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1812919188529197485
 MonoBehaviour:
@@ -641,7 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67898e328cd9ba346a52056142f18a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradesManager: {fileID: 0}
   scoreText: {fileID: 4170200573462884888}
   powerText: {fileID: 7365470268905171476}
   info: {fileID: 8444180842597996835}
@@ -694,7 +693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -960, y: -540}
+  m_AnchoredPosition: {x: -960.00006, y: -540}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6886534162716790475
@@ -1174,7 +1173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: -515}
+  m_AnchoredPosition: {x: 444, y: 312}
   m_SizeDelta: {x: 200, y: 114.5832}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2633039907730668484
