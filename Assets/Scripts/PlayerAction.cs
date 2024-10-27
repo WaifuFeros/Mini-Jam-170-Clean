@@ -27,7 +27,7 @@ public class PlayerAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!mvt.isMoving)
+        if(!mvt.isMoving && !mvt.isDead)
         {
             #region Recycle action (Input Space)
             List<Vector3Int> itemRecycle = ItemRecycle();
@@ -145,6 +145,7 @@ public class PlayerAction : MonoBehaviour
             Instantiate(sprayBullet, pos, shooter.rotation).GetComponent<SprayBullet>().Init(Vector2Int.up,true,true);
             break;
         }
+        battery.ChangePower(-1);
     }
 
     public void Bomb()
@@ -155,6 +156,8 @@ public class PlayerAction : MonoBehaviour
             {
                 MapController.instance.Cleaned(new Vector3Int(x,y), damages);
             }
+        
+        battery.ChangePower(-5);
     }
 
     public void Teleport()
@@ -165,5 +168,7 @@ public class PlayerAction : MonoBehaviour
         transform.position = pos;
         MapController.instance.SetPlayerCellPos(pos);
         wantTeleport = false;
+
+        battery.ChangePower(-7);
     }
 }

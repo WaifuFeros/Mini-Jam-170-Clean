@@ -68,6 +68,7 @@ public class affichageScript : MonoBehaviour
         list_slot.Add(upgrade_slot_dash);
         list_slot.Add(upgrade_slot_tp);
         panel.SetActive(false);
+        upgradesManager = GameObject.FindGameObjectWithTag("Player").GetComponent<UpgradesManager>();
     }
 
 
