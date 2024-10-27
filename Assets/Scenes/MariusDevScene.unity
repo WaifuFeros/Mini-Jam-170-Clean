@@ -2316,7 +2316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa0f86f380f3754899c4c770591944b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
+  ui: {fileID: 2115336264}
   background: {fileID: 85411865}
   detritus: {fileID: 2061125285}
   player: {fileID: 115079080}
@@ -2453,6 +2453,10 @@ PrefabInstance:
     - target: {fileID: 6125442572177102747, guid: 445a657357dc4d14c941817456f3063d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619951099024516160, guid: 445a657357dc4d14c941817456f3063d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -960.00006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2990,6 +2994,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe04453b187da3a4694f844574648915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2115336264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7220685075629644579, guid: 445a657357dc4d14c941817456f3063d, type: 3}
+  m_PrefabInstance: {fileID: 880452483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67898e328cd9ba346a52056142f18a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &832011043960726975

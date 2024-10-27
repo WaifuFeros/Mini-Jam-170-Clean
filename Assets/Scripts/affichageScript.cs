@@ -45,21 +45,21 @@ public class affichageScript : MonoBehaviour
 
     private List<GameObject> list_slot = new List<GameObject>();
     private List<string> list_description = new List<string>() {
-        "Description objet 1",
-        "Description objet 2",
-        "Description objet 3",
-        "Description objet 4",
-        "Description objet 5",
-        "Description objet 6",
-        "Description objet 7",
-        "Description objet 8",
-        "Description objet 9",
-        "Description objet 10",
-        "Description objet 11",
-        "Description objet 12",
-        "Description objet 13",
-        "Description objet 14",
-        "Description objet 15"
+        "Recycler te donne + 1 d'énergie",
+        "Recycler ajoute la moitié du score",
+        "Recycler te donner + 3 d'énergie",
+        "Recycler ajoute la totalité du score comme le nettoyage",
+        "bras articulé (permet de recycler un déchet autour du joueur)",
+        "spray -> tir un projectile dans une direction au choix (1 power)",
+        "strong spray -> tir un projectile dans une direction en faisant toute la ligne/colonne",
+        "line spray -> pareil mais avec toute la ligne horizontale ou verticale",
+        "cross spray -> pareil mais avec la ligne horizontal ET verticale",
+        "combo spray -> pareil mais chaque item touché REDECLENCHE une cross spray",
+        "bombe (fais -1 à tous les objets sur l'écran) : coute jsp combien de power",
+        "propulseur (permet de Dash dans une direction jusqu'à rencontré un mur",
+        "stronger bombe -> fais plus de dégâts",
+        "strong propulseur -> dash jusqu'à rencontrer un mur mais recycle tous les objets sur le chemin",
+        "téléporteur (permet de se téléporter n'importe où) ---> coute BCP de power"
     };
 
     private void Start()
@@ -221,35 +221,72 @@ public class affichageScript : MonoBehaviour
     {
         if (upgradesManager.sprayLevel != 0)
         {
-            info.text = list_description[upgradesManager.sprayLevel - 1];
+            info.text = list_description[upgradesManager.sprayLevel + 4];
         }
     }
     public void upgrade3_info_montre()
     {
-        if (upgradesManager.gadgetLevel != 0)
+        if (upgradesManager.gadgetLevel >= 3)
         {
-            info.text = list_description[upgradesManager.gadgetLevel - 1];
+            info.text = list_description[12];
+        }
+        else if (upgradesManager.gadgetLevel >= 1)
+        {
+            info.text = list_description[10];
         }
     }
     public void upgrade4_info_montre()
     {
-        if (upgradesManager.gadgetLevel != 0)
+        if (upgradesManager.gadgetLevel >= 4)
         {
-            info.text = list_description[upgradesManager.gadgetLevel - 1];
+            info.text = list_description[13];
+        }
+        else if (upgradesManager .gadgetLevel >= 2)
+        {
+            info.text = list_description[11];
+        }
+    }
+    public void upgrade5_info_montre()
+    {
+        if (upgradesManager.gadgetLevel == 5)
+        {
+            info.text = list_description[14];
         }
     }
     public void choice_1_info()
     {
-        if (chooseUpgradeState == "choix")
+        if (choix_1_impossible)
         {
-            info.text = list_description[1 - 1];
+            info.text = "This Upgrade is already maximized";
+        }
+        else
+        {
+            info.text = list_description[upgradesManager.recyclingLevel];
         }
     }
     public void choice_2_info()
     {
+        if (choix_2_impossible)
+        {
+            info.text = "This Upgrade is already maximized";
+        }
+        else
+        {
+            info.text = list_description[upgradesManager.sprayLevel + 5];
+        }
+    }
+    public void choice_3_info()
+    {
         if (chooseUpgradeState == "choix")
         {
-            info.text = list_description[1 - 1];
+            if (choix_3_impossible)
+            {
+                info.text = "This Upgrade is already maximized";
+            }
+            else
+            {
+                info.text = list_description[upgradesManager.gadgetLevel + 10];
+            }
         }
     }
 
