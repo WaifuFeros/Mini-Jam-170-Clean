@@ -10,7 +10,7 @@ public class affichageScript : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI info;
-
+    public TextMeshProUGUI detrituInfo;
     public GameObject upgrade_slot_1;
     public GameObject upgrade_slot_2;
     public GameObject upgrade_slot_3;
@@ -190,6 +190,29 @@ public class affichageScript : MonoBehaviour
     public void info_cache()
     {
         info.text = " ";
+    }
+
+
+    public void PrintDetrituInfo(DetrituData detritu, int distance, bool erase = false)
+    {
+        if (erase)
+        {
+            detrituInfo.text = "";
+        }
+        else
+        {
+            string movesText = "";
+            if(distance>0)
+                movesText = $"{distance} moves are required to reach it";
+            else if(distance<0)
+                movesText = $"You need {-distance} more power to reach it";
+            else
+                movesText = "Press \"Space\" to recycle it";
+
+            detrituInfo.text = 
+            $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled\n"
+            + movesText;
+        }
     }
 }
 

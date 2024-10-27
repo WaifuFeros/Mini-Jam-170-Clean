@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5627ef5378f418d43ae2d500bcdfefd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 1909574954838256606}
   moveSpeed: 5
   isMoving: 0
 --- !u!114 &1410737911838152614
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73945fb288b3e3f4c979321897481bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 0}
 --- !u!114 &7763886689280797244
 MonoBehaviour:
   m_ObjectHideFlags: 0
