@@ -17,6 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6185d8fd6778fb44ae086d2e2a3dce2, type: 2}
   spawnZone: 1
   origin: {x: -1, y: -1, z: 0}
-  life: 0
+  life: 1
   energy: 3
   score: 10

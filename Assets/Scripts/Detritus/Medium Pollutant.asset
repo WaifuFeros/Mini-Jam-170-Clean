@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11c29cc995771a745aa2e6c8f8f70a34, type: 3}
-  m_Name: Small Pollutant
+  m_Name: Medium Pollutant
   m_EditorClassIdentifier: 
-  type: SP
+  type: MP
   tiles:
-  - {fileID: 11400000, guid: c51091ffe5b847244b18915b2bc9187d, type: 2}
-  - {fileID: 11400000, guid: dd9c71ae3ffd4d446aa50cc7a45009dd, type: 2}
+  - {fileID: 11400000, guid: cb93ed12e757c0d4982c25c3f3945e1b, type: 2}
+  - {fileID: 11400000, guid: 3a4c310a7d12fb04686d167f91a1f11b, type: 2}
   spawnZone: 1
   origin: {x: -1, y: -1, z: 0}
-  life: 1
-  energy: 1
-  score: 50
+  life: 3
+  energy: 4
+  score: 150

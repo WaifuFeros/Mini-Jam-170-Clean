@@ -11,7 +11,7 @@ public class MapController : MonoBehaviour
     public Tilemap background;
     public Tilemap detritus;
     public Transform player;
-    public DetrituData[,] detritusGrid; 
+    public (DetrituData,int)[,] detritusGrid; 
     public Vector3Int playerCellPos;
     public int mapActualLength;
     public int mapMaxLength;
@@ -26,7 +26,7 @@ public class MapController : MonoBehaviour
     public void Init(int newLength)
     {
         mapActualLength = newLength;
-        detritusGrid = new DetrituData[mapMaxLength,mapMaxLength];
+        detritusGrid = new (DetrituData,int)[mapMaxLength,mapMaxLength];
         centerZone = (mapMaxLength - mapActualLength) / 2;
         background.GetComponent<BackgroundCreation>().Init(mapActualLength, mapMaxLength);
     }
@@ -39,13 +39,13 @@ public class MapController : MonoBehaviour
         else if(detritus.HasTile(mouseCellPos))
         {
             int distance = Math.Abs(mouseCellPos.x - playerCellPos.x) + Math.Abs(mouseCellPos.y - playerCellPos.y);
-            if(distance > player.GetComponent<BatteryManagement>().leftPower)
-                distance = player.GetComponent<BatteryManagement>().leftPower - distance;
+            if(distance > player.GetComponent<BatteryManagement>().leftPower-1)
+                distance = player.GetComponent<BatteryManagement>().leftPower - distance - 1;
             ui.PrintDetrituInfo(detritusGrid[MouseCellPos().x,MouseCellPos().y], distance);
         }
         else
         {
-            ui.PrintDetrituInfo(null,0,true);   
+            ui.PrintDetrituInfo((null,0),0,true);   
         }
     }
 
@@ -64,7 +64,7 @@ public class MapController : MonoBehaviour
             return false;
     }
 
-    public bool CanClean()
+    public bool CanRecycle()
     {
         if(detritus.HasTile(playerCellPos))
             return true;
@@ -72,10 +72,19 @@ public class MapController : MonoBehaviour
             return false;
     }
 
-    public DetrituData Clean(Vector3Int targetPos)
+    public DetrituData RemoveItem(Vector3Int targetPos)
     {
         detritus.SetTile(targetPos, null);
-        return detritusGrid[targetPos.x, targetPos.y];
+        return detritusGrid[targetPos.x, targetPos.y].Item1;
+    }
+
+    public void Cleaned(Vector3Int cellPos, int strength)
+    {
+        detritusGrid[cellPos.x, cellPos.y].Item2 -= strength;
+        if(detritusGrid[cellPos.x, cellPos.y].Item2<=0)
+        {
+            RemoveItem(cellPos);
+        }
     }
 
     public Vector3Int MouseCellPos()
