@@ -12,32 +12,34 @@ public class affichageScript : MonoBehaviour
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI info;
     public TextMeshProUGUI detrituInfo;
-    public GameObject upgrade_slot_1;
-    public GameObject upgrade_slot_2;
-    public GameObject upgrade_slot_3;
-    public GameObject upgrade_slot_4;
+    public GameObject upgrade_slot_recyclage;
+    public GameObject upgrade_slot_spray;
+    public GameObject upgrade_slot_bombe;
+    public GameObject upgrade_slot_dash;
+    public GameObject upgrade_slot_tp;
     public GameObject upgrade_choose;
     public GameObject upgrade_choice_1;
     public GameObject upgrade_choice_2;
+    public GameObject upgrade_choice_3;
     public GameObject panel;
 
-    public Sprite upgrade_texture_1;
-    public Sprite upgrade_texture_2;
-    public Sprite upgrade_texture_3;
-    public Sprite upgrade_texture_4;
-    public Sprite upgrade_texture_5;
-    public Sprite upgrade_texture_6;
+    public Sprite bombe;
+    public Sprite dash;
+    public Sprite tp;
+
 
     private int score = 0;
     private int power = 0;
     private int indexSlot = 0;
-    private int choice_1 = 0;
-    private int choice_2 = 0;
+    private int choice_3 = 0;
+
+    bool choix_1_impossible = false;
+    bool choix_2_impossible = false;
+    bool choix_3_impossible = false;
 
     private string chooseUpgradeState = "";
 
     private List<GameObject> list_slot = new List<GameObject>();
-    private List<Sprite> list_texture = new List<Sprite>();
     private List<string> list_description = new List<string>() {
         "Description objet 1",
         "Description objet 2",
@@ -45,23 +47,25 @@ public class affichageScript : MonoBehaviour
         "Description objet 4",
         "Description objet 5",
         "Description objet 6",
+        "Description objet 7",
+        "Description objet 8",
+        "Description objet 9",
+        "Description objet 10",
+        "Description objet 11",
+        "Description objet 12",
+        "Description objet 13",
+        "Description objet 14",
+        "Description objet 15"
     };
-    private List<int> upgrade_obtenue = new List<int>() {0,0,0,0};  // 0 signifie qu'il n'y a pas d'upgrade
+    private List<int> upgrade_obtenue = new List<int>() {0,0,0,0,0};  // 0 signifie qu'il n'y a pas d'upgrade
 
     private void Start()
     {
-        
-        list_slot.Add(upgrade_slot_1);
-        list_slot.Add(upgrade_slot_2);
-        list_slot.Add(upgrade_slot_3);
-        list_slot.Add(upgrade_slot_4);
-        list_texture.Add(upgrade_texture_1);
-        list_texture.Add(upgrade_texture_2);
-        list_texture.Add(upgrade_texture_3);
-        list_texture.Add(upgrade_texture_4);
-        list_texture.Add(upgrade_texture_5);
-        list_texture.Add(upgrade_texture_6);
-        
+        list_slot.Add(upgrade_slot_recyclage);
+        list_slot.Add(upgrade_slot_spray);
+        list_slot.Add(upgrade_slot_bombe);
+        list_slot.Add(upgrade_slot_dash);
+        list_slot.Add(upgrade_slot_tp);
         panel.SetActive(false);
     }
 
@@ -88,31 +92,45 @@ public class affichageScript : MonoBehaviour
         {
             if (upgrade_choice_1.GetComponent<Image>().color[3] == 0)
             {
-                List<int> list_choice = new List<int>() {1,2,3,4,5,6};
-                foreach (int upgrade in upgrade_obtenue)
+                List<int> list_choice = new List<int>() {1,2,3};
+                if (upgrade_obtenue[2] == 2)
                 {
-                    if (upgrade != 0)
-                    {
-                        list_choice.Remove(upgrade);
-                    }
+                    list_choice.Remove(1);
                 }
-                choice_1 = list_choice[Random.Range(0,list_choice.Count)];
-                list_choice.Remove(choice_1);
-                choice_2 = list_choice[Random.Range(0, list_choice.Count)];
-                upgrade_choice_1.GetComponent<Image>().sprite = list_texture[choice_1 - 1];
-                upgrade_choice_2.GetComponent<Image>().sprite = list_texture[choice_2 - 1];
+                if (upgrade_obtenue[3] == 2)
+                {
+                    list_choice.Remove(2);
+                }
+                if (upgrade_obtenue[4] == 1)
+                {
+                    list_choice.Remove(3);
+                }
+                if (list_choice.Count == 0)
+                {
+                    choix_3_impossible = true;
+                }
+                if (!choix_3_impossible)
+                {
+                    choice_3 = list_choice[Random.Range(0, list_choice.Count)]+2;
+                    if (choice_3 == 3) { upgrade_choice_3.GetComponent<Image>().sprite = bombe; }
+                    if (choice_3 == 4) { upgrade_choice_3.GetComponent<Image>().sprite = dash; }
+                    if (choice_3 == 5) { upgrade_choice_3.GetComponent<Image>().sprite = tp; }
+                }
+                
 
             }
-            if (upgrade_choice_1.GetComponent<Image>().color[3] <= 255)
+            if (upgrade_choice_3.GetComponent<Image>().color[3] <= 255)
             {
                 upgrade_choice_1.GetComponent<Image>().color = new Color(255,255, 255, upgrade_choice_1.GetComponent<Image>().color[3]+ 20 * Time.deltaTime);
                 upgrade_choice_2.GetComponent<Image>().color = new Color(255, 255, 255, upgrade_choice_2.GetComponent<Image>().color[3] + 20 * Time.deltaTime);
+                upgrade_choice_3.GetComponent<Image>().color = new Color(255, 255, 255, upgrade_choice_3.GetComponent<Image>().color[3] + 20 * Time.deltaTime);
             }
         }
         if (chooseUpgradeState == "disparition")
         {
             upgrade_choice_1.GetComponent<Image>().color = new Color(255, 255, 255,0);
             upgrade_choice_2.GetComponent<Image>().color = new Color(255, 255, 255,0);
+            upgrade_choice_3.GetComponent<Image>().color = new Color(255, 255, 255,0);
             info.text = " ";
             if (upgrade_choose.transform.localScale.x > 0)
             {
@@ -131,8 +149,6 @@ public class affichageScript : MonoBehaviour
         }
     }
 
-
-
     public void chooseUpgrade()
     {
         chooseUpgradeState = "apparition";
@@ -141,44 +157,48 @@ public class affichageScript : MonoBehaviour
     public void choice1()
     {
         chooseUpgradeState = "disparition";
-        addUpgrade(choice_1);
+        addUpgrade(1);
     }
     public void choice2()
     {
         chooseUpgradeState = "disparition";
-        addUpgrade(choice_2);
+        addUpgrade(2);
+    }
+    public void choice3()
+    {
+        chooseUpgradeState = "disparition";
+        addUpgrade(choice_3);
     }
 
 
     public void addUpgrade(int nbUpgrade)
     {
-        if (upgrade_obtenue[0] == 0)
+        if (nbUpgrade == 1 && nbUpgrade<5)
         {
-            indexSlot = 0;
+            upgrade_obtenue[nbUpgrade - 1] += 1; 
+            list_slot[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (upgrade_obtenue[1] == 0)
+        else if (nbUpgrade == 2 && nbUpgrade < 5)
         {
-            indexSlot = 1;
+            upgrade_obtenue[nbUpgrade - 1] += 1;
+            list_slot[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (upgrade_obtenue[2] == 0)
+        else if (nbUpgrade == 3 && nbUpgrade < 2)
         {
-            indexSlot = 2;
+            upgrade_obtenue[nbUpgrade - 1] += 1;
+            list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (upgrade_obtenue[3] == 0)
+        else if (nbUpgrade == 4 && nbUpgrade < 2)
         {
-            indexSlot = 3;
+            upgrade_obtenue[nbUpgrade - 1] += 1;
+            list_slot[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else 
+        else if (nbUpgrade == 5 && nbUpgrade < 1)
         {
-            indexSlot = 4;
+            upgrade_obtenue[nbUpgrade - 1] += 1;
+            list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
 
-        if (indexSlot != 4)
-        {
-            upgrade_obtenue[indexSlot] = nbUpgrade;
-            list_slot[indexSlot].GetComponent<Image>().sprite = list_texture[nbUpgrade-1];
-            list_slot[indexSlot].GetComponent<Image>().color = new Color(255, 255, 255, 255);
-        }
     }
     public void removeUpgrade(int slotUpgrade)
     {
@@ -195,12 +215,6 @@ public class affichageScript : MonoBehaviour
     {
         powerText.text = "Power Left : " + power.ToString();
     }
-    void removePower(int removeNb)
-    {
-        power -= removeNb;
-        powerText.text = "Power Left : " + power.ToString();
-    }
-
     public void upgrade1_info_montre()
     {
         if (upgrade_obtenue[0] != 0)
@@ -233,14 +247,14 @@ public class affichageScript : MonoBehaviour
     {
         if (chooseUpgradeState == "choix")
         {
-            info.text = list_description[choice_1 - 1];
+            info.text = list_description[1 - 1];
         }
     }
     public void choice_2_info()
     {
         if (chooseUpgradeState == "choix")
         {
-            info.text = list_description[choice_2 - 1];
+            info.text = list_description[1 - 1];
         }
     }
 
