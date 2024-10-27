@@ -12,6 +12,7 @@ public class affichageScript : MonoBehaviour
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI info;
     public TextMeshProUGUI detrituInfo;
+    public TextMeshProUGUI mvt;
     public GameObject upgrade_slot_1;
     public GameObject upgrade_slot_2;
     public GameObject upgrade_slot_3;
@@ -291,6 +292,11 @@ public class affichageScript : MonoBehaviour
 
         detrituInfo.text = infoText + "\n" + movesText;
         
+    }
+
+    public void PrintMovements(int mov)
+    {
+        mvt.text = $"Movements : {mov}";
     }
 }
 

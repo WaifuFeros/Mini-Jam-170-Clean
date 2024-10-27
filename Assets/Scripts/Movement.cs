@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
                 action.wantDash = false;
             }
         }
-        else if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Collect"))
+        else if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Collect") && !MapController.instance.isFogMoving)
         {
             // Gère l'entrée utilisateur seulement quand le personnage a terminé de se déplacer
             if (Input.GetKeyDown(KeyCode.UpArrow))
