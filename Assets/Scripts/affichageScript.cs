@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 public class affichageScript : MonoBehaviour
 {
-    public UpgradesManager upgradesManager;
+    private UpgradesManager upgradesManager;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI info;
@@ -67,6 +67,7 @@ public class affichageScript : MonoBehaviour
         list_slot.Add(upgrade_slot_dash);
         list_slot.Add(upgrade_slot_tp);
         panel.SetActive(false);
+        upgradesManager = GameObject.FindGameObjectWithTag("Player").GetComponent<UpgradesManager>();
     }
 
 
