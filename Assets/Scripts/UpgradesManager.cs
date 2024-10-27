@@ -9,7 +9,7 @@ public class UpgradesManager : MonoBehaviour
     /// 4 : 
     /// 5 : Arm -> let recycle every items in adjacent and diagonal cases 
     /// </summary>
-    public int recyclingLevel;
+    public int recyclingLevel = 0;
     /// <summary>
     /// 1 : Simple bullet
     /// 2 : Simple piercing bullet
@@ -17,7 +17,7 @@ public class UpgradesManager : MonoBehaviour
     /// 4 : Four piercing bullets in a cross shape
     /// 5 : Four piercing bullets in a cross shape that induce a cross bullets for every hitted item
     /// </summary>
-    public int sprayLevel;
+    public int sprayLevel = 0;
     /// <summary>
     /// 1 : Bomb (1 damage to every items)
     /// 2 : Dash (For 3 powers, go to the other side of the map)
@@ -25,7 +25,7 @@ public class UpgradesManager : MonoBehaviour
     /// 4 : Recycling Dash (recycle item during the dash)
     /// 5 : Teleportation
     /// </summary>
-    public int gadgetLevel;
+    public int gadgetLevel = 0;
 
     public void ChangeLevel(string which)
     {
