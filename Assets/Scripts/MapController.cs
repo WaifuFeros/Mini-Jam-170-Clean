@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class MapController : MonoBehaviour
     public void Init(int newLength)
     {
         mapActualLength = newLength;
+        detritusGrid = new DetrituData[mapMaxLength,mapMaxLength];
         centerZone = (mapMaxLength - mapActualLength) / 2;
         background.GetComponent<BackgroundCreation>().Init(mapActualLength, mapMaxLength);
     }
@@ -35,7 +37,8 @@ public class MapController : MonoBehaviour
     }
     public bool IsInBackground()
     {
-        if(playerCellPos.x >= centerZone && playerCellPos.y >= centerZone && playerCellPos.x < mapActualLength-centerZone && playerCellPos.y < mapActualLength-centerZone)
+        Debug.Log(playerCellPos);
+        if(playerCellPos.x > centerZone && playerCellPos.y > centerZone && playerCellPos.x <= mapActualLength+centerZone && playerCellPos.y <= mapActualLength+centerZone)
             return true;
         else
             return false;
@@ -53,6 +56,5 @@ public class MapController : MonoBehaviour
     {
         detritus.SetTile(targetPos, null);
         return detritusGrid[targetPos.x, targetPos.y];
-        // Get la data etc et ajouter l'énergie au player 
     }
 }

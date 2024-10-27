@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
+    public affichageScript ui;
     private Movement mvt;
     private BatteryManagement battery;
     void Start()
@@ -21,16 +22,18 @@ public class PlayerAction : MonoBehaviour
                 // Afficher UI "Espace -> Nettoyer"
                 if(Input.GetKeyDown(KeyCode.Space))
                 {
-                    Clean(MapController.instance.playerCellPos);
+                    Recycle(MapController.instance.playerCellPos);
                 }
             }
         }
 
     }
 
-    void Clean(Vector3Int targetPos)
+    void Recycle(Vector3Int targetPos)
     {
-        MapController.instance.Clean(targetPos);
+        DetrituData detritu = MapController.instance.Clean(targetPos);
+        battery.ChangePower(detritu.energy);
+        ui.addScore(detritu.score);
         GameManagement.instance.Action();
     }
 }

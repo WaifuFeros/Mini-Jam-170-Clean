@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Remote button_Upgrade_0: -2825935221738022216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

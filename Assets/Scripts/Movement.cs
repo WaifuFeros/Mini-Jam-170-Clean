@@ -71,6 +71,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            Debug.Log("caca");
             targetPosition = transform.position;
             MapController.instance.SetPlayerCellPos(targetPosition);
         }

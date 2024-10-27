@@ -8,7 +8,6 @@ using UnityEngine.Tilemaps;
 public class DetritusApparition : MonoBehaviour
 {
     private Tilemap grid;
-    private string[] detritusId = new string[] {"SO","SP","MO","MP","GO","GP"};
     void Start()
     {
         grid = GetComponent<Tilemap>();
@@ -17,7 +16,7 @@ public class DetritusApparition : MonoBehaviour
 
     public void Apparition(string type)
     {
-        DetrituData data = GameManagement.instance.detritus[detritusId.ToList().IndexOf(type)];
+        DetrituData data = GameManagement.instance.detritus.FirstOrDefault(d => d.type == type);
         int length = MapController.instance.mapActualLength + 1;
         Vector3Int spawnGridSize = (data.spawnZone<length/2 ? data.spawnZone : length/2-1) * new Vector3Int(2,2);
 
@@ -25,6 +24,7 @@ public class DetritusApparition : MonoBehaviour
         new Vector3Int(Random.Range(0, length - spawnGridSize.x), Random.Range(0, length - spawnGridSize.y)) :
         data.origin;
 
+        origin += Vector3Int.one * (MapController.instance.centerZone+1);
         int count = 0;
         Vector3Int pos;
         do
@@ -34,8 +34,11 @@ public class DetritusApparition : MonoBehaviour
         }
         while(grid.HasTile(pos) && count < 20);
 
-
-        grid.SetTile(pos, data.tiles[Random.Range(0,data.tiles.Count())]);
+        if(count < 20)
+        {
+            MapController.instance.detritusGrid[pos.x, pos.y] = data;
+            grid.SetTile(pos, data.tiles[Random.Range(0,data.tiles.Count())]);
+        }
     }
 
     public void Cleaned(Vector3Int pos)

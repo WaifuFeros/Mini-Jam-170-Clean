@@ -14,7 +14,7 @@ public class GameManagement : MonoBehaviour
     public int movements = 0; // Player movements count 
     public Dictionary<string,(int,int)> detritusFrequences = new Dictionary<string,(int,int)>
     {
-        {"SO",(1,5)}, {"SP",(0,4)},{"MO",(0,1)},{"MP",(0,1)},{"GO",(0,1)},{"GP",(0,1)}
+        {"SO",(1,5)}, {"SP",(1,4)},{"MO",(0,1)},{"MP",(0,1)},{"GO",(0,1)},{"GP",(0,1)}
     };
     public DetrituData[] detritus;
     public (float,int) piecesSpawner; // Probability A for a piece to spawn every B movements

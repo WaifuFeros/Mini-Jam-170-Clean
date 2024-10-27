@@ -74,7 +74,7 @@ public class affichageScript : MonoBehaviour
             indexSlot++;
         }
     }
-    void addScore(int addNb)
+    public void addScore(int addNb)
     {
         score += addNb;
         scoreText.text = "Score : " + score.ToString();

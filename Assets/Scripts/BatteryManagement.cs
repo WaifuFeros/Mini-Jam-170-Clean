@@ -11,7 +11,6 @@ public class BatteryManagement : MonoBehaviour
         leftPower += add;
         if(leftPower <= 0)
         {
-
             // Fin de partie
         }
         else if(leftPower>maxPower)
