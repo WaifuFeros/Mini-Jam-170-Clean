@@ -18,22 +18,28 @@ public class MapController : MonoBehaviour
     public int mapActualLength;
     public int mapMaxLength;
     public int centerZone;
+    public Transform fogMask;
+    public float transitionSpeed;
+    public bool isFogMoving;
+    Vector3 targetScale;
     void Awake()
     {
         instance = this;
-        Init(mapActualLength);
+        MapInit(mapActualLength);
         playerCellPos = Vector3Int.one * mapActualLength/2;
         playerAction = player.GetComponent<PlayerAction>();
+        itemsGrid = new (DetrituData,int)[mapMaxLength+1,mapMaxLength+1];
     }
 
-    public void Init(int newLength)
+    public void MapInit(int newLength)
     {
         mapActualLength = newLength;
-        itemsGrid = new (DetrituData,int)[mapMaxLength+1,mapMaxLength+1];
         centerZone = (mapMaxLength - mapActualLength) / 2;
-        // Fog gestion
-    }
 
+        targetScale = Vector2.one * mapActualLength * 0.8f;
+        isFogMoving = true;
+    }
+    
     void Update()
     {
         Vector3Int mouseCellPos = MouseCellPos();
@@ -50,6 +56,14 @@ public class MapController : MonoBehaviour
         {
             ui.EraseDetrituInfo();  
         }
+
+        if(isFogMoving)
+        {
+            fogMask.localScale = Vector2.MoveTowards(fogMask.localScale,targetScale, transitionSpeed*Time.deltaTime);
+            if(fogMask.localScale==targetScale)
+                isFogMoving = false;
+        }
+
     }
 
     

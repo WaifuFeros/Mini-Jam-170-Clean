@@ -306,6 +306,11 @@ public class affichageScript : MonoBehaviour
         detrituInfo.text = infoText + "\n" + movesText;
         
     }
+
+    public void PrintMovements(int mov)
+    {
+        mvt.text = $"Movements : {mov}";
+    }
 }
 
 

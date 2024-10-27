@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 50203fdf9ac529949ba448915bfe53eb
+guid: 58a214d5695babc45bbe5da01de5003c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2825935221738022216
-    second: Remote button_Upgrade_0
+      213: -5247759904997254191
+    second: Propulseur_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Remote button_Upgrade_0
+      name: Propulseur_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 1
-        width: 21
-        height: 30
+        x: 4
+        y: 0
+        width: 24
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ba5a0663e248c8d0800000000000000
-      internalID: -2825935221738022216
+      spriteID: 1dbd9149b263c27b0800000000000000
+      internalID: -5247759904997254191
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Remote button_Upgrade_0: -2825935221738022216
+      Propulseur_0: -5247759904997254191
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

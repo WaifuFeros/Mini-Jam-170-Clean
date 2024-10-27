@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     public static GameManagement instance;
+    public affichageScript ui;
     void Awake()
     {
         instance = this;
@@ -23,8 +24,6 @@ public class GameManagement : MonoBehaviour
     };
 
     public DetrituData[] detritus;
-    public (float,int) piecesSpawner; // Probability A for a piece to spawn every B movements
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Init();
@@ -32,37 +31,34 @@ public class GameManagement : MonoBehaviour
 
     void Init()
     {
-        piecesSpawner = (0.5f, 5);
+
     }
 
     public void Action()
     {
         movements++;
+        ui.PrintMovements(movements);
+        DifficultyEvolution();
 
         // Spawn detritu
         foreach(string type in itemFrequences.Keys)
             if(movements%itemFrequences[type].Item2==0)
                 AddDetritus(type);
-
-        if(movements%piecesSpawner.Item2==0)
-            if(Random.Range(0f, 1f) < piecesSpawner.Item1) 
-                return;
-                // Spawn a piece
         
-        DifficultyEvolution();
     }
 
     private void DifficultyEvolution()
     {
-        // if(movements%20==0)
-        // {
-        //     detritusSpawner.Item1++;
-        // }
+        if(movements==50)
+        {
+            Debug.Log("5");
+            MapController.instance.MapInit(8);
+        }
+        if(movements==100)
+        {
 
-        // if(movements%30==0 && detritusSpawner.Item2>1)
-        // {
-        //     detritusSpawner.Item2--;
-        // }
+            MapController.instance.MapInit(10);
+        }
     }
 
     private void AddDetritus(string type)
