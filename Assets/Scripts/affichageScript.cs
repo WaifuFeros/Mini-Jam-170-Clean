@@ -13,6 +13,7 @@ public class affichageScript : MonoBehaviour
     public TextMeshProUGUI info;
     public TextMeshProUGUI mvt;
     public TextMeshProUGUI detrituInfo;
+
     public GameObject upgrade_slot_recyclage;
     public GameObject upgrade_slot_spray;
     public GameObject upgrade_slot_bombe;
@@ -24,6 +25,17 @@ public class affichageScript : MonoBehaviour
     public GameObject upgrade_choice_3;
     public GameObject panel;
 
+    public GameObject objet_1_lvl;
+    public GameObject objet_2_lvl;
+    public GameObject objet_3_lvl;
+    public GameObject objet_4_lvl;
+    public GameObject objet_5_lvl;
+
+    public Sprite upgrade_lvl_1;
+    public Sprite upgrade_lvl_2;
+    public Sprite upgrade_lvl_3;
+    public Sprite upgrade_lvl_4;
+    public Sprite upgrade_lvl_5;
     public Sprite bombe;
     public Sprite dash;
     public Sprite tp;
@@ -42,6 +54,8 @@ public class affichageScript : MonoBehaviour
     private string chooseUpgradeState = "";
 
     private List<GameObject> list_slot = new List<GameObject>();
+    private List<GameObject> list_objet_lvl = new List<GameObject>();
+    private List<Sprite> list_lvl = new List<Sprite>();
     private List<string> list_description = new List<string>() {
         "Recycler te donne + 1 d'énergie",
         "Recycler ajoute la moitié du score",
@@ -68,6 +82,16 @@ public class affichageScript : MonoBehaviour
         list_slot.Add(upgrade_slot_bombe);
         list_slot.Add(upgrade_slot_dash);
         list_slot.Add(upgrade_slot_tp);
+        list_lvl.Add(upgrade_lvl_1);
+        list_lvl.Add(upgrade_lvl_2);
+        list_lvl.Add(upgrade_lvl_3);
+        list_lvl.Add(upgrade_lvl_4);
+        list_lvl.Add(upgrade_lvl_5);
+        list_objet_lvl.Add(objet_1_lvl);
+        list_objet_lvl.Add(objet_2_lvl);
+        list_objet_lvl.Add(objet_3_lvl);
+        list_objet_lvl.Add(objet_4_lvl);
+        list_objet_lvl.Add(objet_5_lvl);
         panel.SetActive(false);
         upgradesManager = GameObject.FindGameObjectWithTag("Player").GetComponent<UpgradesManager>();
     }
@@ -166,12 +190,16 @@ public class affichageScript : MonoBehaviour
     {
         if (nbUpgrade == 1) // Recycle
         {
+            list_objet_lvl[0].GetComponent<Image>().sprite = list_lvl[upgradesManager.recyclingLevel];
+            list_objet_lvl[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             upgradesManager.ChangeLevel("Recycle");
             list_slot[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             choix_1_impossible = upgradesManager.recyclingLevel == 5;
         }
         else if (nbUpgrade == 2) // Spray
         {
+            list_objet_lvl[1].GetComponent<Image>().sprite = list_lvl[upgradesManager.sprayLevel];
+            list_objet_lvl[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             upgradesManager.ChangeLevel("Spray");
             list_slot[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             choix_2_impossible = upgradesManager.sprayLevel == 5;
@@ -183,14 +211,28 @@ public class affichageScript : MonoBehaviour
             list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             if (upgradesManager.gadgetLevel == 1)
             {
+                list_objet_lvl[2].GetComponent<Image>().sprite = list_lvl[0];
+                list_objet_lvl[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
                 list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             }
             if (upgradesManager.gadgetLevel == 2)
             {
+                list_objet_lvl[3].GetComponent<Image>().sprite = list_lvl[0];
+                list_objet_lvl[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
                 list_slot[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            }
+            if (upgradesManager.gadgetLevel == 3)
+            {
+                list_objet_lvl[2].GetComponent<Image>().sprite = list_lvl[1];
+            }
+            if (upgradesManager.gadgetLevel == 4)
+            {
+                list_objet_lvl[3].GetComponent<Image>().sprite = list_lvl[2];
             }
             if (upgradesManager.gadgetLevel == 5)
             {
+                list_objet_lvl[4].GetComponent<Image>().sprite = list_lvl[0];
+                list_objet_lvl[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
                 list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             }
         }
