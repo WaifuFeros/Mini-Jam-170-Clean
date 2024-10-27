@@ -258,7 +258,7 @@ public class affichageScript : MonoBehaviour
         int score = 0; int energy = 0; int pieces = 0;
         foreach (Vector3Int posInt in pos)
         {
-            DetrituData data = MapController.instance.detritusGrid[posInt.x, posInt.y].Item1;
+            DetrituData data = MapController.instance.itemsGrid[posInt.x, posInt.y].Item1;
             score += data.score; 
             energy += data.energy; 
             if(data.type == "P")

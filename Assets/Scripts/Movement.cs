@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour
             if (transform.position == targetPosition)
             {
                 isMoving = false;
+                action.wantDash = false;
             }
         }
         else if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Collect"))
@@ -41,28 +42,42 @@ public class Movement : MonoBehaviour
             // Gère l'entrée utilisateur seulement quand le personnage a terminé de se déplacer
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Move(Vector3.up);
+                Move(Vector3Int.up);
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                Move(Vector3.down);
+                Move(Vector3Int.down);
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                Move(Vector3.left);
+                Move(Vector3Int.left);
                 spriteRenderer.flipX = true;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                Move(Vector3.right);
+                Move(Vector3Int.right);
                 spriteRenderer.flipX = false;
             }
         }
     }
 
-    void Move(Vector3 direction)
+    void Move(Vector3Int direction)
     {
-        targetPosition += direction * GameManagement.instance.transform.lossyScale.x;
+        if(action.wantDash)
+        {
+            int distance = 0; 
+            Vector3Int playerCellPosSim = MapController.instance.playerCellPos; 
+            while(MapController.instance.IsInBackground(playerCellPosSim))
+            {
+                distance++;
+                playerCellPosSim = new Vector3Int(playerCellPosSim.x + direction.x, playerCellPosSim.y + direction.y);
+            }
+            distance--;
+            direction *= distance;
+        }
+        
+        Vector3 worldDirection = direction;
+        targetPosition += worldDirection * GameManagement.instance.transform.lossyScale.x;
         MapController.instance.SetPlayerCellPos(targetPosition);
 
         if(MapController.instance.IsInBackground(MapController.instance.playerCellPos))

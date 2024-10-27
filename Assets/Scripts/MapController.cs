@@ -12,7 +12,8 @@ public class MapController : MonoBehaviour
     public Tilemap background;
     public Tilemap detritus;
     public Transform player;
-    public (DetrituData,int)[,] detritusGrid; 
+    private PlayerAction playerAction;
+    public (DetrituData,int)[,] itemsGrid; 
     public Vector3Int playerCellPos;
     public int mapActualLength;
     public int mapMaxLength;
@@ -22,12 +23,13 @@ public class MapController : MonoBehaviour
         instance = this;
         Init(mapActualLength);
         playerCellPos = Vector3Int.one * mapActualLength/2;
+        playerAction = player.GetComponent<PlayerAction>();
     }
 
     public void Init(int newLength)
     {
         mapActualLength = newLength;
-        detritusGrid = new (DetrituData,int)[mapMaxLength,mapMaxLength];
+        itemsGrid = new (DetrituData,int)[mapMaxLength,mapMaxLength];
         centerZone = (mapMaxLength - mapActualLength) / 2;
         background.GetComponent<BackgroundCreation>().Init(mapActualLength, mapMaxLength);
     }
@@ -35,14 +37,14 @@ public class MapController : MonoBehaviour
     void Update()
     {
         Vector3Int mouseCellPos = MouseCellPos();
-        if(ItemRecycle(true).Count>0)
-            ui.PrintDetrituRecycleInfo(ItemRecycle(true).ToArray());
+        if(playerAction.ItemRecycle().Count>0)
+            ui.PrintDetrituRecycleInfo(playerAction.ItemRecycle().ToArray());
         else if(detritus.HasTile(mouseCellPos))
         {
             int distance = Math.Abs(mouseCellPos.x - playerCellPos.x) + Math.Abs(mouseCellPos.y - playerCellPos.y);
             if(distance > player.GetComponent<BatteryManagement>().leftPower-1)
                 distance = player.GetComponent<BatteryManagement>().leftPower - distance - 1;
-            ui.PrintDetrituMouseInfo(detritusGrid[mouseCellPos.x,mouseCellPos.y], distance);
+            ui.PrintDetrituMouseInfo(itemsGrid[mouseCellPos.x,mouseCellPos.y], distance);
         }
         else
         {
@@ -67,27 +69,16 @@ public class MapController : MonoBehaviour
         }
     }
 
-    public List<Vector3Int> ItemRecycle(bool arm = false)
-    {
-        List<Vector3Int> items = new List<Vector3Int>();
-        for(int y= arm?-1:0; y <= (arm?1:0);y++)
-            for(int x = arm?-1:0; x <=(arm?1:0); x++)
-                if(detritus.HasTile(new Vector3Int(playerCellPos.x+x, playerCellPos.y+y)))// && Math.Abs(x)+Math.Abs(y)<2)
-                    items.Add(new Vector3Int(playerCellPos.x+x, playerCellPos.y+y));
-        
-        return items;
-    }
-
     public DetrituData RemoveItem(Vector3Int targetPos)
     {
         detritus.SetTile(targetPos, null);
-        return detritusGrid[targetPos.x, targetPos.y].Item1;
+        return itemsGrid[targetPos.x, targetPos.y].Item1;
     }
 
     public void Cleaned(Vector3Int cellPos, int strength)
     {
-        detritusGrid[cellPos.x, cellPos.y].Item2 -= strength;
-        if(detritusGrid[cellPos.x, cellPos.y].Item2<=0)
+        itemsGrid[cellPos.x, cellPos.y].Item2 -= strength;
+        if(itemsGrid[cellPos.x, cellPos.y].Item2<=0)
         {
             RemoveItem(cellPos);
         }
