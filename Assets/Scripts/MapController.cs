@@ -35,18 +35,18 @@ public class MapController : MonoBehaviour
     void Update()
     {
         Vector3Int mouseCellPos = MouseCellPos();
-        if(detritus.HasTile(playerCellPos))
-            ui.PrintDetrituInfo(detritusGrid[playerCellPos.x,playerCellPos.y], 0);
+        if(ItemRecycle(true).Count>0)
+            ui.PrintDetrituRecycleInfo(ItemRecycle(true).ToArray());
         else if(detritus.HasTile(mouseCellPos))
         {
             int distance = Math.Abs(mouseCellPos.x - playerCellPos.x) + Math.Abs(mouseCellPos.y - playerCellPos.y);
             if(distance > player.GetComponent<BatteryManagement>().leftPower-1)
                 distance = player.GetComponent<BatteryManagement>().leftPower - distance - 1;
-            ui.PrintDetrituInfo(detritusGrid[MouseCellPos().x,MouseCellPos().y], distance);
+            ui.PrintDetrituMouseInfo(detritusGrid[mouseCellPos.x,mouseCellPos.y], distance);
         }
         else
         {
-            ui.PrintDetrituInfo((null,0),0,true);   
+            ui.EraseDetrituInfo();  
         }
     }
 

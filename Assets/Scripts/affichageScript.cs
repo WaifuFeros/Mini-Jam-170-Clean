@@ -249,35 +249,48 @@ public class affichageScript : MonoBehaviour
         info.text = " ";
     }
 
+    public void EraseDetrituInfo()
+    {
+        detrituInfo.text = "";
+    }
+    public void PrintDetrituRecycleInfo(Vector3Int[] pos)
+    {
+        int score = 0; int energy = 0; int pieces = 0;
+        foreach (Vector3Int posInt in pos)
+        {
+            DetrituData data = MapController.instance.detritusGrid[posInt.x, posInt.y].Item1;
+            score += data.score; 
+            energy += data.energy; 
+            if(data.type == "P")
+                pieces++;
+        }
 
-    public void PrintDetrituInfo((DetrituData,int) detrituData, int distance, bool erase = false)
+        detrituInfo.text = $"Press \"Space\" to recycle.\nYou will gain {energy} power and {score} score"
+        + (pieces==0 ? "" : $"and {pieces} pieces");
+    }
+    public void PrintDetrituMouseInfo((DetrituData,int) detrituData, int distance)
     {
         DetrituData detritu = detrituData.Item1;
-        if (erase)
-        {
-            detrituInfo.text = "";
-        }
+
+        string infoText = "";
+        if(detritu.type == "P")
+            infoText = "Piece that can be recycled to repair you and improve your abilities";
         else
         {
-            string infoText = "";
-            if(detritu.type == "P")
-                infoText = "Piece that can be recycled to repair you and improve your abilities";
-            else
-            {
-                infoText = $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled";
-                infoText += $"\nIt needs {detrituData.Item2} cleanings to be fully cleaned";
-            }
-
-            string movesText = "";
-            if(distance>0)
-                movesText = $"{distance} moves are required to reach it";
-            else if(distance<0)
-                movesText = $"You need {-distance} more power to reach it";
-            else
-                movesText = "Press \"Space\" to recycle it";
-
-            detrituInfo.text = infoText + "\n" + movesText;
+            infoText = $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled";
+            infoText += $"\nIt needs {detrituData.Item2} cleanings to be fully cleaned";
         }
+
+        string movesText = "";
+        if(distance>0)
+            movesText = $"{distance} moves are required to reach it";
+        else if(distance<0)
+            movesText = $"You need {-distance} more power to reach it";
+        else
+            movesText = "Press \"Space\" to recycle it";
+
+        detrituInfo.text = infoText + "\n" + movesText;
+        
     }
 }
 

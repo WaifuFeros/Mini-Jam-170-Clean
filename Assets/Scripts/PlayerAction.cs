@@ -8,12 +8,14 @@ public class PlayerAction : MonoBehaviour
 {
     public affichageScript ui;
     private Movement mvt;
+    private Animator animator;              // Référence a l'Animator
     private BatteryManagement battery;
     public GameObject sprayBullet;
     void Start()
     {
         mvt = GetComponent<Movement>();
         battery = GetComponent<BatteryManagement>();    
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class PlayerAction : MonoBehaviour
 
     void Recycle(Vector3Int targetPos)
     {
+        animator.SetTrigger("Collect");
         DetrituData detritu = MapController.instance.RemoveItem(targetPos);
         if(detritu.type == "P")
         {
