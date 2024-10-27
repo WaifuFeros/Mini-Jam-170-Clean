@@ -5,7 +5,6 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEngine.Tilemaps;
 public class affichageScript : MonoBehaviour
 {
     private UpgradesManager upgradesManager;
@@ -41,8 +40,6 @@ public class affichageScript : MonoBehaviour
     public Sprite dash;
     public Sprite tp;
     public Sprite croix;
-    public Sprite recycling;
-    public Image detrituSprite;
 
 
     private int score = 0;
@@ -60,21 +57,21 @@ public class affichageScript : MonoBehaviour
     private List<GameObject> list_objet_lvl = new List<GameObject>();
     private List<Sprite> list_lvl = new List<Sprite>();
     private List<string> list_description = new List<string>() {
-        "Recycler te donne + 1 d'ï¿½nergie",
-        "Recycler ajoute la moitiï¿½ du score",
-        "Recycler te donner + 3 d'ï¿½nergie",
-        "Recycler ajoute la totalitï¿½ du score comme le nettoyage",
-        "bras articulï¿½ (permet de recycler un dï¿½chet autour du joueur)",
+        "Recycler te donne + 1 d'énergie",
+        "Recycler ajoute la moitié du score",
+        "Recycler te donner + 3 d'énergie",
+        "Recycler ajoute la totalité du score comme le nettoyage",
+        "bras articulé (permet de recycler un déchet autour du joueur)",
         "spray -> tir un projectile dans une direction au choix (1 power)",
         "strong spray -> tir un projectile dans une direction en faisant toute la ligne/colonne",
         "line spray -> pareil mais avec toute la ligne horizontale ou verticale",
         "cross spray -> pareil mais avec la ligne horizontal ET verticale",
-        "combo spray -> pareil mais chaque item touchï¿½ REDECLENCHE une cross spray",
-        "bombe (fais -1 ï¿½ tous les objets sur l'ï¿½cran) : coute jsp combien de power",
-        "propulseur (permet de Dash dans une direction jusqu'ï¿½ rencontrï¿½ un mur",
-        "stronger bombe -> fais plus de dï¿½gï¿½ts",
-        "strong propulseur -> dash jusqu'ï¿½ rencontrer un mur mais recycle tous les objets sur le chemin",
-        "tï¿½lï¿½porteur (permet de se tï¿½lï¿½porter n'importe oï¿½) ---> coute BCP de power"
+        "combo spray -> pareil mais chaque item touché REDECLENCHE une cross spray",
+        "bombe (fais -1 à tous les objets sur l'écran) : coute jsp combien de power",
+        "propulseur (permet de Dash dans une direction jusqu'à rencontré un mur",
+        "stronger bombe -> fais plus de dégâts",
+        "strong propulseur -> dash jusqu'à rencontrer un mur mais recycle tous les objets sur le chemin",
+        "téléporteur (permet de se téléporter n'importe où) ---> coute BCP de power"
     };
 
     private void Start()
@@ -104,7 +101,6 @@ public class affichageScript : MonoBehaviour
     {
         if (chooseUpgradeState == "apparition")
         {
-            EraseDetrituInfo();
             panel.SetActive(true);
             if (upgrade_choose.transform.localScale.x < 11)
             {
@@ -121,7 +117,6 @@ public class affichageScript : MonoBehaviour
         }
         if (chooseUpgradeState == "choix")
         {
-            EraseDetrituInfo();
             if (upgrade_choice_1.GetComponent<Image>().color[3] == 0)
             {
                 if (upgradesManager.gadgetLevel == 0 || upgradesManager.gadgetLevel == 2) { upgrade_choice_3.GetComponent<Image>().sprite = bombe; }
@@ -137,7 +132,6 @@ public class affichageScript : MonoBehaviour
         }
         if (chooseUpgradeState == "disparition")
         {
-            EraseDetrituInfo();
             upgrade_choice_1.GetComponent<Image>().color = new Color(255, 255, 255,0);
             upgrade_choice_2.GetComponent<Image>().color = new Color(255, 255, 255,0);
             upgrade_choice_3.GetComponent<Image>().color = new Color(255, 255, 255,0);
@@ -250,11 +244,11 @@ public class affichageScript : MonoBehaviour
     public void addScore(int addNb)
     {
         score += addNb;
-        scoreText.text = $"Score : \n{score}\nBest : \nbestscore";
+        scoreText.text = "Score : " + score.ToString();
     }
-    public void ChangePower(int power, int maxPower)
+    public void ChangePower(int power)
     {
-        powerText.text = $"Power Left : {power} / {maxPower}";
+        powerText.text = "Power Left : " + power.ToString();
     }
     public void upgrade1_info_montre()
     {
@@ -344,7 +338,6 @@ public class affichageScript : MonoBehaviour
     public void EraseDetrituInfo()
     {
         detrituInfo.text = "";
-        detrituSprite.gameObject.SetActive(false);
     }
     public void PrintDetrituRecycleInfo(Vector3Int[] pos)
     {
@@ -360,34 +353,35 @@ public class affichageScript : MonoBehaviour
 
         detrituInfo.text = $"Press \"Space\" to recycle.\nYou will gain {energy} power and {score} score"
         + (pieces==0 ? "" : $"and {pieces} pieces");
-        detrituSprite.gameObject.SetActive(true);
-        detrituSprite.sprite = recycling;
     }
-    public void PrintDetrituMouseInfo((DetrituData,int,int) detrituData, int distance)
+    public void PrintDetrituMouseInfo((DetrituData,int) detrituData, int distance)
     {
         DetrituData detritu = detrituData.Item1;
-        Tile tile = detritu.tiles[detrituData.Item3] as Tile;
 
         string infoText = "";
         if(detritu.type == "P")
             infoText = "Piece that can be recycled to repair you and improve your abilities";
         else
         {
-            infoText = 
-            $"Score points : {detritu.score}"
-            + $"\nEnergy gain : {detritu.energy}"
-            + $"\nDistance : " + (distance>0 ? $"{distance}" : $"Too far (need {-distance} more moves)")
-            + $"\nNeeds {detrituData.Item2} more cleaning" + (detrituData.Item2==1 ? "" : "s");
+            infoText = $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled";
+            infoText += $"\nIt needs {detrituData.Item2} cleanings to be fully cleaned";
         }
 
-        detrituInfo.text = infoText;
-        detrituSprite.gameObject.SetActive(true);
-        detrituSprite.sprite = tile.sprite;
+        string movesText = "";
+        if(distance>0)
+            movesText = $"{distance} moves are required to reach it";
+        else if(distance<0)
+            movesText = $"You need {-distance} more power to reach it";
+        else
+            movesText = "Press \"Space\" to recycle it";
+
+        detrituInfo.text = infoText + "\n" + movesText;
+        
     }
 
     public void PrintMovements(int mov)
     {
-        mvt.text = $"Actions taken :\n{mov}";
+        mvt.text = $"Movements : {mov}";
     }
 }
 

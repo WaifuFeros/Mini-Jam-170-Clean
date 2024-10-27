@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     public PlayerAction action;
     public UpgradesManager upgradesManager;
     public bool isDead = false;
-    public bool invicible;
     public float moveSpeed = 3f;            // Vitesse de déplacement
     private Vector3 targetPosition;         // La position cible où se déplacer
     public bool isMoving = false;          // Booléen pour vérifier si le personnage est en déplacement

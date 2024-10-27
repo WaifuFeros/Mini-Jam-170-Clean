@@ -6,16 +6,13 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     public static GameManagement instance;
-    private affichageScript ui;
-    public int movements = 0; // Player movements count 
+    public affichageScript ui;
     void Awake()
     {
         instance = this;
-        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
-        ui.PrintMovements(movements);
-        ui.addScore(0);
     }
 
+    public int movements = 0; // Player movements count 
     public Dictionary<string,(int,int)> itemFrequences = new Dictionary<string,(int,int)>
     {
         // Frequences : "String" item appears Item1 times every Item2 movements
@@ -34,25 +31,13 @@ public class GameManagement : MonoBehaviour
 
     void Init()
     {
+
     }
 
     public void Action()
     {
         movements++;
         ui.PrintMovements(movements);
-
-        if(movements==1)
-        {
-            AddDetritus("SO");
-        }
-
-        for(int y=0; y<MapController.instance.itemsGrid.GetLength(1); y++)
-            for(int x=0; x<MapController.instance.itemsGrid.GetLength(0); x++)    
-            {
-                if(MapController.instance.itemsGrid[x,y].Item1 != null && MapController.instance.itemsGrid[x,y].Item1.type == "BEBER")
-                    MapController.instance.Cleaned(new Vector3Int(x,y),1);
-            }
-
         DifficultyEvolution();
 
         // Spawn detritu
