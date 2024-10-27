@@ -27,6 +27,7 @@ public class affichageScript : MonoBehaviour
     public Sprite bombe;
     public Sprite dash;
     public Sprite tp;
+    public Sprite croix;
 
 
     private int score = 0;
@@ -61,6 +62,7 @@ public class affichageScript : MonoBehaviour
 
     private void Start()
     {
+        upgradesManager = GameObject.FindGameObjectWithTag("Player").GetComponent<UpgradesManager>();
         list_slot.Add(upgrade_slot_recyclage);
         list_slot.Add(upgrade_slot_spray);
         list_slot.Add(upgrade_slot_bombe);
@@ -129,23 +131,34 @@ public class affichageScript : MonoBehaviour
 
     public void chooseUpgrade()
     {
-        chooseUpgradeState = "apparition";
+        if (!choix_1_impossible || !choix_2_impossible || !choix_3_impossible)
+        {
+            chooseUpgradeState = "apparition";
+        }
     }
-
     public void choice1()
     {
-        chooseUpgradeState = "disparition";
-        addUpgrade(1);
+        if (!choix_1_impossible)
+        {
+            chooseUpgradeState = "disparition";
+            addUpgrade(1);
+        }
     }
     public void choice2()
     {
-        chooseUpgradeState = "disparition";
-        addUpgrade(2);
+        if (!choix_2_impossible)
+        {
+            chooseUpgradeState = "disparition";
+            addUpgrade(2);
+        }
     }
     public void choice3()
     {
-        chooseUpgradeState = "disparition";
-        addUpgrade(3);
+        if (!choix_3_impossible)
+        {
+            chooseUpgradeState = "disparition";
+            addUpgrade(3);
+        }
     }
 
 
@@ -155,15 +168,19 @@ public class affichageScript : MonoBehaviour
         {
             upgradesManager.ChangeLevel("Recycle");
             list_slot[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            choix_1_impossible = upgradesManager.recyclingLevel == 5;
         }
         else if (nbUpgrade == 2) // Spray
         {
             upgradesManager.ChangeLevel("Spray");
             list_slot[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            choix_2_impossible = upgradesManager.sprayLevel == 5;
         }
-        else if (nbUpgrade == 3) // Bombe
+        else if (nbUpgrade == 3) // Gadget
         {
             upgradesManager.ChangeLevel("Gadget");
+            choix_3_impossible = upgradesManager.gadgetLevel == 5;
+            list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             if (upgradesManager.gadgetLevel == 1)
             {
                 list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
@@ -177,6 +194,10 @@ public class affichageScript : MonoBehaviour
                 list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             }
         }
+        if (choix_1_impossible) { upgrade_choice_1.GetComponent<Image>().sprite = croix; }
+        if (choix_2_impossible) { upgrade_choice_2.GetComponent<Image>().sprite = croix; }
+        if (choix_3_impossible) { upgrade_choice_3.GetComponent<Image>().sprite = croix; }
+
     }
     public void addScore(int addNb)
     {
