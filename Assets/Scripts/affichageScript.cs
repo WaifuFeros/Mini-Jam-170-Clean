@@ -19,6 +19,7 @@ public class affichageScript : MonoBehaviour
     public GameObject upgrade_choose;
     public GameObject upgrade_choice_1;
     public GameObject upgrade_choice_2;
+    public GameObject panel;
 
     public Sprite upgrade_texture_1;
     public Sprite upgrade_texture_2;
@@ -61,6 +62,7 @@ public class affichageScript : MonoBehaviour
         list_texture.Add(upgrade_texture_5);
         list_texture.Add(upgrade_texture_6);
         
+        panel.SetActive(false);
     }
 
 
@@ -68,6 +70,7 @@ public class affichageScript : MonoBehaviour
     {
         if (chooseUpgradeState == "apparition")
         {
+            panel.SetActive(true);
             if (upgrade_choose.transform.localScale.x < 11)
             {
                 upgrade_choose.transform.localScale = new Vector3(
@@ -110,6 +113,7 @@ public class affichageScript : MonoBehaviour
         {
             upgrade_choice_1.GetComponent<Image>().color = new Color(255, 255, 255,0);
             upgrade_choice_2.GetComponent<Image>().color = new Color(255, 255, 255,0);
+            info.text = " ";
             if (upgrade_choose.transform.localScale.x > 0)
             {
                 upgrade_choose.transform.localScale = new Vector3(
@@ -121,6 +125,7 @@ public class affichageScript : MonoBehaviour
             else
             {
                 upgrade_choose.transform.localScale = new Vector3(0,0,0);
+                panel.SetActive(false);
                 chooseUpgradeState = "";
             }
         }
@@ -224,6 +229,21 @@ public class affichageScript : MonoBehaviour
             info.text = list_description[upgrade_obtenue[3] - 1];
         }
     }
+    public void choice_1_info()
+    {
+        if (chooseUpgradeState == "choix")
+        {
+            info.text = list_description[choice_1 - 1];
+        }
+    }
+    public void choice_2_info()
+    {
+        if (chooseUpgradeState == "choix")
+        {
+            info.text = list_description[choice_2 - 1];
+        }
+    }
+
     public void info_cache()
     {
         info.text = " ";
