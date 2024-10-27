@@ -36,6 +36,7 @@ public class DetritusApparition : MonoBehaviour
 
         if(count < 20)
         {
+            Debug.Log($"{pos} {data}");
             MapController.instance.itemsGrid[pos.x, pos.y] = (data,data.life);
             grid.SetTile(pos, data.tiles[Random.Range(0,data.tiles.Count())]);
         }
