@@ -35,5 +35,6 @@ public class UpgradesManager : MonoBehaviour
             case "Spray": sprayLevel++; break;
             case "Gadget": gadgetLevel++; break;
         }
+        GetComponent<BatteryManagement>().maxPower+=2;
     }
 }

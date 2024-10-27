@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEngine.Tilemaps;
 public class affichageScript : MonoBehaviour
 {
     private UpgradesManager upgradesManager;
@@ -28,6 +29,7 @@ public class affichageScript : MonoBehaviour
     public Sprite dash;
     public Sprite tp;
     public Sprite croix;
+    public Image detrituSprite;
 
 
     private int score = 0;
@@ -202,7 +204,7 @@ public class affichageScript : MonoBehaviour
     public void addScore(int addNb)
     {
         score += addNb;
-        scoreText.text = "Score : " + score.ToString();
+        scoreText.text = $"Score : \n{score}\nBest : \nbestscore";
     }
     public void ChangePower(int power)
     {
@@ -259,6 +261,7 @@ public class affichageScript : MonoBehaviour
     public void EraseDetrituInfo()
     {
         detrituInfo.text = "";
+        detrituSprite.gameObject.SetActive(false);
     }
     public void PrintDetrituRecycleInfo(Vector3Int[] pos)
     {
@@ -275,34 +278,31 @@ public class affichageScript : MonoBehaviour
         detrituInfo.text = $"Press \"Space\" to recycle.\nYou will gain {energy} power and {score} score"
         + (pieces==0 ? "" : $"and {pieces} pieces");
     }
-    public void PrintDetrituMouseInfo((DetrituData,int) detrituData, int distance)
+    public void PrintDetrituMouseInfo((DetrituData,int,int) detrituData, int distance)
     {
         DetrituData detritu = detrituData.Item1;
+        Tile tile = detritu.tiles[detrituData.Item3] as Tile;
 
         string infoText = "";
         if(detritu.type == "P")
             infoText = "Piece that can be recycled to repair you and improve your abilities";
         else
         {
-            infoText = $"{detritu.name}\nGive {detritu.energy} energy when recycled\nGive {detritu.score} score points when cleaned or recycled";
-            infoText += $"\nIt needs {detrituData.Item2} cleanings to be fully cleaned";
+            infoText = 
+            $"Score points : {detritu.score}"
+            + $"\nEnergy gain : {detritu.energy}"
+            + $"\nDistance : " + (distance>0 ? $"{distance}" : $"Too far (need {-distance} more moves)")
+            + $"\nNeeds {detrituData.Item2} more cleaning" + (detrituData.Item2==1 ? "" : "s");
         }
 
-        string movesText = "";
-        if(distance>0)
-            movesText = $"{distance} moves are required to reach it";
-        else if(distance<0)
-            movesText = $"You need {-distance} more power to reach it";
-        else
-            movesText = "Press \"Space\" to recycle it";
-
-        detrituInfo.text = infoText + "\n" + movesText;
-        
+        detrituInfo.text = infoText;
+        detrituSprite.gameObject.SetActive(true);
+        detrituSprite.sprite = tile.sprite;
     }
 
     public void PrintMovements(int mov)
     {
-        mvt.text = $"Movements : {mov}";
+        mvt.text = $"Actions taken :\n{mov}";
     }
 }
 

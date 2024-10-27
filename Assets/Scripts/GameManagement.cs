@@ -47,7 +47,7 @@ public class GameManagement : MonoBehaviour
             for(int x=0; x<MapController.instance.itemsGrid.GetLength(0); x++)    
             {
                 if(MapController.instance.itemsGrid[x,y].Item1 != null && MapController.instance.itemsGrid[x,y].Item1.type == "BEBER")
-                    MapController.instance.itemsGrid[x,y].Item2--;
+                    MapController.instance.Cleaned(new Vector3Int(x,y),1);
             }
 
         DifficultyEvolution();

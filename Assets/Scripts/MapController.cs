@@ -13,7 +13,7 @@ public class MapController : MonoBehaviour
     public Tilemap detritus;
     public Transform player;
     private PlayerAction playerAction;
-    public (DetrituData,int)[,] itemsGrid; 
+    public (DetrituData,int,int)[,] itemsGrid; 
     public Vector3Int playerCellPos;
     public int mapActualLength;
     public int mapMaxLength;
@@ -29,7 +29,7 @@ public class MapController : MonoBehaviour
         playerCellPos = Vector3Int.one * mapActualLength/2;
         playerAction = player.GetComponent<PlayerAction>();
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
-        itemsGrid = new (DetrituData,int)[mapMaxLength+1,mapMaxLength+1];
+        itemsGrid = new (DetrituData,int,int)[mapMaxLength+1,mapMaxLength+1];
     }
 
     public void MapInit(int newLength)
@@ -92,9 +92,11 @@ public class MapController : MonoBehaviour
 
     public void Cleaned(Vector3Int cellPos, int strength)
     {
-        itemsGrid[cellPos.x, cellPos.y].Item2 -= strength;
-        if(itemsGrid[cellPos.x, cellPos.y].Item2<=0)
+        (DetrituData, int,int) item = itemsGrid[cellPos.x, cellPos.y];
+        item.Item2 -= strength;
+        if(item.Item2<=0)
         {
+            ui.addScore(item.Item1.score);
             RemoveItem(cellPos);
         }
     }
