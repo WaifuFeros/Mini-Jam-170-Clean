@@ -93,32 +93,9 @@ public class affichageScript : MonoBehaviour
         {
             if (upgrade_choice_1.GetComponent<Image>().color[3] == 0)
             {
-                List<int> list_choice = new List<int>() {1,2,3};
-                if (upgradesManager.gadgetLevel == 2)
-                {
-                    list_choice.Remove(1);
-                }
-                if (upgradesManager.gadgetLevel == 2)
-                {
-                    list_choice.Remove(2);
-                }
-                if (upgradesManager.gadgetLevel == 5)
-                {
-                    list_choice.Remove(3);
-                }
-                if (list_choice.Count == 0)
-                {
-                    choix_3_impossible = true;
-                }
-                if (!choix_3_impossible)
-                {
-                    choice_3 = list_choice[Random.Range(0, list_choice.Count)]+2;
-                    if (choice_3 == 3) { upgrade_choice_3.GetComponent<Image>().sprite = bombe; }
-                    if (choice_3 == 4) { upgrade_choice_3.GetComponent<Image>().sprite = dash; }
-                    if (choice_3 == 5) { upgrade_choice_3.GetComponent<Image>().sprite = tp; }
-                }
-                
-
+                if (upgradesManager.gadgetLevel == 0 || upgradesManager.gadgetLevel == 2) { upgrade_choice_3.GetComponent<Image>().sprite = bombe; }
+                if (upgradesManager.gadgetLevel == 1 || upgradesManager.gadgetLevel == 3) { upgrade_choice_3.GetComponent<Image>().sprite = dash; }
+                if (upgradesManager.gadgetLevel == 4) { upgrade_choice_3.GetComponent<Image>().sprite = tp; }
             }
             if (upgrade_choice_3.GetComponent<Image>().color[3] <= 255)
             {
@@ -168,45 +145,39 @@ public class affichageScript : MonoBehaviour
     public void choice3()
     {
         chooseUpgradeState = "disparition";
-        addUpgrade(choice_3);
+        addUpgrade(3);
     }
 
 
     public void addUpgrade(int nbUpgrade)
     {
-        if (nbUpgrade == 1 && nbUpgrade<5) // Recycle
+        if (nbUpgrade == 1) // Recycle
         {
             upgradesManager.ChangeLevel("Recycle");
             list_slot[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (nbUpgrade == 2 && nbUpgrade < 5) // Spray
+        else if (nbUpgrade == 2) // Spray
         {
             upgradesManager.ChangeLevel("Spray");
             list_slot[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if (nbUpgrade == 3 && nbUpgrade < 2) // Bombe
+        else if (nbUpgrade == 3) // Bombe
         {
             upgradesManager.ChangeLevel("Gadget");
-            list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            if (upgradesManager.gadgetLevel == 1)
+            {
+                list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            }
+            if (upgradesManager.gadgetLevel == 2)
+            {
+                list_slot[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            }
+            if (upgradesManager.gadgetLevel == 5)
+            {
+                list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            }
         }
-        else if (nbUpgrade == 4 && nbUpgrade < 2) // Propulseur
-        {
-            upgradesManager.ChangeLevel("Gadget");
-            list_slot[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
-        }
-        else if (nbUpgrade == 5 && nbUpgrade < 1) // Téléporteur
-        {
-            upgradesManager.ChangeLevel("Gadget");
-            list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
-        }
-
     }
-    public void removeUpgrade(int slotUpgrade)
-    {
-        // upgrade_obtenue[slotUpgrade - 1] = 0;
-        list_slot[slotUpgrade - 1].GetComponent<Image>().color = new Color(255, 255, 255, 0);
-    }
-
     public void addScore(int addNb)
     {
         score += addNb;
