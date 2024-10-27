@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 public class affichageScript : MonoBehaviour
 {
 
@@ -16,6 +17,9 @@ public class affichageScript : MonoBehaviour
     public GameObject upgrade_slot_3;
     public GameObject upgrade_slot_4;
     public GameObject upgrade_choose;
+    public GameObject upgrade_choice_1;
+    public GameObject upgrade_choice_2;
+    public GameObject panel;
 
     public Sprite upgrade_texture_1;
     public Sprite upgrade_texture_2;
@@ -27,6 +31,8 @@ public class affichageScript : MonoBehaviour
     private int score = 0;
     private int power = 0;
     private int indexSlot = 0;
+    private int choice_1 = 0;
+    private int choice_2 = 0;
 
     private string chooseUpgradeState = "";
 
@@ -56,13 +62,7 @@ public class affichageScript : MonoBehaviour
         list_texture.Add(upgrade_texture_5);
         list_texture.Add(upgrade_texture_6);
         
-        addUpgrade(4); 
-        addUpgrade(5);
-        addUpgrade(1);
-
-        removeUpgrade(2);
-        addUpgrade(6);
-        chooseUpgrade();
+        panel.SetActive(false);
     }
 
 
@@ -70,6 +70,7 @@ public class affichageScript : MonoBehaviour
     {
         if (chooseUpgradeState == "apparition")
         {
+            panel.SetActive(true);
             if (upgrade_choose.transform.localScale.x < 11)
             {
                 upgrade_choose.transform.localScale = new Vector3(
@@ -83,8 +84,36 @@ public class affichageScript : MonoBehaviour
                 chooseUpgradeState = "choix";
             }
         }
+        if (chooseUpgradeState == "choix")
+        {
+            if (upgrade_choice_1.GetComponent<Image>().color[3] == 0)
+            {
+                List<int> list_choice = new List<int>() {1,2,3,4,5,6};
+                foreach (int upgrade in upgrade_obtenue)
+                {
+                    if (upgrade != 0)
+                    {
+                        list_choice.Remove(upgrade);
+                    }
+                }
+                choice_1 = list_choice[Random.Range(0,list_choice.Count)];
+                list_choice.Remove(choice_1);
+                choice_2 = list_choice[Random.Range(0, list_choice.Count)];
+                upgrade_choice_1.GetComponent<Image>().sprite = list_texture[choice_1 - 1];
+                upgrade_choice_2.GetComponent<Image>().sprite = list_texture[choice_2 - 1];
+
+            }
+            if (upgrade_choice_1.GetComponent<Image>().color[3] <= 255)
+            {
+                upgrade_choice_1.GetComponent<Image>().color = new Color(255,255, 255, upgrade_choice_1.GetComponent<Image>().color[3]+ 20 * Time.deltaTime);
+                upgrade_choice_2.GetComponent<Image>().color = new Color(255, 255, 255, upgrade_choice_2.GetComponent<Image>().color[3] + 20 * Time.deltaTime);
+            }
+        }
         if (chooseUpgradeState == "disparition")
         {
+            upgrade_choice_1.GetComponent<Image>().color = new Color(255, 255, 255,0);
+            upgrade_choice_2.GetComponent<Image>().color = new Color(255, 255, 255,0);
+            info.text = " ";
             if (upgrade_choose.transform.localScale.x > 0)
             {
                 upgrade_choose.transform.localScale = new Vector3(
@@ -96,6 +125,7 @@ public class affichageScript : MonoBehaviour
             else
             {
                 upgrade_choose.transform.localScale = new Vector3(0,0,0);
+                panel.SetActive(false);
                 chooseUpgradeState = "";
             }
         }
@@ -107,6 +137,18 @@ public class affichageScript : MonoBehaviour
     {
         chooseUpgradeState = "apparition";
     }
+
+    public void choice1()
+    {
+        chooseUpgradeState = "disparition";
+        addUpgrade(choice_1);
+    }
+    public void choice2()
+    {
+        chooseUpgradeState = "disparition";
+        addUpgrade(choice_2);
+    }
+
 
     public void addUpgrade(int nbUpgrade)
     {
@@ -187,6 +229,21 @@ public class affichageScript : MonoBehaviour
             info.text = list_description[upgrade_obtenue[3] - 1];
         }
     }
+    public void choice_1_info()
+    {
+        if (chooseUpgradeState == "choix")
+        {
+            info.text = list_description[choice_1 - 1];
+        }
+    }
+    public void choice_2_info()
+    {
+        if (chooseUpgradeState == "choix")
+        {
+            info.text = list_description[choice_2 - 1];
+        }
+    }
+
     public void info_cache()
     {
         info.text = " ";
