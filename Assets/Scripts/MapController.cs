@@ -8,7 +8,7 @@ using UnityEngine.Tilemaps;
 public class MapController : MonoBehaviour
 {
     public static MapController instance;
-    public affichageScript ui;
+    private affichageScript ui;
     public Tilemap background;
     public Tilemap detritus;
     public Transform player;
@@ -29,6 +29,7 @@ public class MapController : MonoBehaviour
         playerCellPos = Vector3Int.one * mapActualLength/2;
         playerAction = player.GetComponent<PlayerAction>();
         itemsGrid = new (DetrituData,int)[mapMaxLength+1,mapMaxLength+1];
+        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
     }
 
     public void MapInit(int newLength)
