@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -55,21 +56,26 @@ public class MapController : MonoBehaviour
         playerCellPos = background.WorldToCell(pos);
         return playerCellPos;
     }
-    public bool IsInBackground()
+    public bool IsInBackground(Vector3Int cellPos)
     {
-        Debug.Log(playerCellPos);
-        if(playerCellPos.x > centerZone && playerCellPos.y > centerZone && playerCellPos.x <= mapActualLength+centerZone && playerCellPos.y <= mapActualLength+centerZone)
+        if(cellPos.x > centerZone && cellPos.y > centerZone && cellPos.x <= mapActualLength+centerZone && cellPos.y <= mapActualLength+centerZone)
             return true;
         else
+        {
+            Debug.Log(cellPos);
             return false;
+        }
     }
 
-    public bool CanRecycle()
+    public List<Vector3Int> ItemRecycle(bool arm = false)
     {
-        if(detritus.HasTile(playerCellPos))
-            return true;
-        else
-            return false;
+        List<Vector3Int> items = new List<Vector3Int>();
+        for(int y= arm?-1:0; y <= (arm?1:0);y++)
+            for(int x = arm?-1:0; x <=(arm?1:0); x++)
+                if(detritus.HasTile(new Vector3Int(playerCellPos.x+x, playerCellPos.y+y)) && Math.Abs(x)+Math.Abs(y)<2)
+                    items.Add(new Vector3Int(playerCellPos.x+x, playerCellPos.y+y));
+        
+        return items;
     }
 
     public DetrituData RemoveItem(Vector3Int targetPos)

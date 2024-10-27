@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer spriteRenderer;  // Référence au Sprite Renderer (pour flip l'image)
     private Animator animator;              // Référence a l'Animator
     private BatteryManagement battery;
+    public PlayerAction action;
     public float moveSpeed = 3f;            // Vitesse de déplacement
     private Vector3 targetPosition;         // La position cible où se déplacer
     public bool isMoving = false;          // Booléen pour vérifier si le personnage est en déplacement
@@ -15,6 +16,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         battery = GetComponent<BatteryManagement>();    
+        action = GetComponent<PlayerAction>();
         targetPosition = transform.position;
         animator = GetComponent<Animator>();
     }
@@ -34,7 +36,7 @@ public class Movement : MonoBehaviour
                 isMoving = false;
             }
         }
-        else
+        else if(!action.wantToRecycle)
         {
             // Gère l'entrée utilisateur seulement quand le personnage a terminé de se déplacer
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -63,7 +65,7 @@ public class Movement : MonoBehaviour
         targetPosition += direction * GameManagement.instance.transform.lossyScale.x;
         MapController.instance.SetPlayerCellPos(targetPosition);
 
-        if(MapController.instance.IsInBackground())
+        if(MapController.instance.IsInBackground(MapController.instance.playerCellPos))
         {
             GameManagement.instance.Action();
             battery.ChangePower(-1); // ?
