@@ -152,7 +152,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 7220685075629644579}
           m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
-          m_MethodName: choice_2_info
+          m_MethodName: choice_3_info
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 8353296350182662203}
   - component: {fileID: 17482849036533359}
   - component: {fileID: 7778857381667704174}
+  - component: {fileID: 6194394254417961690}
   m_Layer: 5
   m_Name: upgrade spray
   m_TagString: Untagged
@@ -515,6 +516,51 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6194394254417961690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740372201725613008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7220685075629644579}
+          m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
+          m_MethodName: upgrade2_info_montre
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7220685075629644579}
+          m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
+          m_MethodName: info_cache
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1944671562190978585
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +633,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1812919188529197485
 MonoBehaviour:
@@ -936,7 +982,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 7220685075629644579}
           m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
-          m_MethodName: upgrade1_info_montre
+          m_MethodName: upgrade3_info_montre
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1365,6 +1411,7 @@ GameObject:
   - component: {fileID: 4618404113865572668}
   - component: {fileID: 5789154302116217058}
   - component: {fileID: 2384201144533690288}
+  - component: {fileID: 1713542488861195412}
   m_Layer: 5
   m_Name: upgrade recyclage
   m_TagString: Untagged
@@ -1473,6 +1520,51 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1713542488861195412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4290501865560935785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7220685075629644579}
+          m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
+          m_MethodName: upgrade1_info_montre
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7220685075629644579}
+          m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
+          m_MethodName: info_cache
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4621421918238272806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2157,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 7220685075629644579}
           m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
-          m_MethodName: upgrade3_info_montre
+          m_MethodName: upgrade5_info_montre
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2364,7 +2456,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 7220685075629644579}
           m_TargetAssemblyTypeName: affichageScript, Assembly-CSharp
-          m_MethodName: upgrade2_info_montre
+          m_MethodName: upgrade4_info_montre
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
