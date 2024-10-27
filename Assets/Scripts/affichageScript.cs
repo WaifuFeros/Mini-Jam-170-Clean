@@ -15,6 +15,7 @@ public class affichageScript : MonoBehaviour
     public GameObject upgrade_slot_2;
     public GameObject upgrade_slot_3;
     public GameObject upgrade_slot_4;
+    public GameObject upgrade_choose;
 
     public Sprite upgrade_texture_1;
     public Sprite upgrade_texture_2;
@@ -27,6 +28,8 @@ public class affichageScript : MonoBehaviour
     private int power = 0;
     private int indexSlot = 0;
 
+    private string chooseUpgradeState = "";
+
     private List<GameObject> list_slot = new List<GameObject>();
     private List<Sprite> list_texture = new List<Sprite>();
     private List<string> list_description = new List<string>() {
@@ -37,7 +40,7 @@ public class affichageScript : MonoBehaviour
         "Description objet 5",
         "Description objet 6",
     };
-    private List<int> animation_obtenue = new List<int>();
+    private List<int> upgrade_obtenue = new List<int>() {0,0,0,0};  // 0 signifie qu'il n'y a pas d'upgrade
 
     private void Start()
     {
@@ -56,24 +59,91 @@ public class affichageScript : MonoBehaviour
         addUpgrade(4); 
         addUpgrade(5);
         addUpgrade(1);
-        addUpgrade(2);
+
+        removeUpgrade(2);
         addUpgrade(6);
-        
+        chooseUpgrade();
     }
 
 
-
-
-    void addUpgrade(int nbUpgrade)
+    private void Update()
     {
-        if (indexSlot < 4)
+        if (chooseUpgradeState == "apparition")
         {
-            animation_obtenue.Add(nbUpgrade-1);
-            list_slot[indexSlot].GetComponent<Image>().sprite = list_texture[nbUpgrade-1];
-            list_slot[indexSlot].GetComponent<Image>().color = new Color(255, 255, 255, 255);
-            indexSlot++;
+            if (upgrade_choose.transform.localScale.x < 11)
+            {
+                upgrade_choose.transform.localScale = new Vector3(
+                    upgrade_choose.transform.localScale.x + 20 * Time.deltaTime,
+                    upgrade_choose.transform.localScale.y + 20 * Time.deltaTime,
+                    upgrade_choose.transform.localScale.z
+                );
+            }
+            else
+            {
+                chooseUpgradeState = "choix";
+            }
+        }
+        if (chooseUpgradeState == "disparition")
+        {
+            if (upgrade_choose.transform.localScale.x > 0)
+            {
+                upgrade_choose.transform.localScale = new Vector3(
+                    upgrade_choose.transform.localScale.x - 20 * Time.deltaTime,
+                    upgrade_choose.transform.localScale.y - 20 * Time.deltaTime,
+                    upgrade_choose.transform.localScale.z
+                );
+            }
+            else
+            {
+                upgrade_choose.transform.localScale = new Vector3(0,0,0);
+                chooseUpgradeState = "";
+            }
         }
     }
+
+
+
+    public void chooseUpgrade()
+    {
+        chooseUpgradeState = "apparition";
+    }
+
+    public void addUpgrade(int nbUpgrade)
+    {
+        if (upgrade_obtenue[0] == 0)
+        {
+            indexSlot = 0;
+        }
+        else if (upgrade_obtenue[1] == 0)
+        {
+            indexSlot = 1;
+        }
+        else if (upgrade_obtenue[2] == 0)
+        {
+            indexSlot = 2;
+        }
+        else if (upgrade_obtenue[3] == 0)
+        {
+            indexSlot = 3;
+        }
+        else 
+        {
+            indexSlot = 4;
+        }
+
+        if (indexSlot != 4)
+        {
+            upgrade_obtenue[indexSlot] = nbUpgrade;
+            list_slot[indexSlot].GetComponent<Image>().sprite = list_texture[nbUpgrade-1];
+            list_slot[indexSlot].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+    }
+    public void removeUpgrade(int slotUpgrade)
+    {
+        upgrade_obtenue[slotUpgrade - 1] = 0;
+        list_slot[slotUpgrade - 1].GetComponent<Image>().color = new Color(255, 255, 255, 0);
+    }
+
     public void addScore(int addNb)
     {
         score += addNb;
@@ -91,19 +161,31 @@ public class affichageScript : MonoBehaviour
 
     public void upgrade1_info_montre()
     {
-        info.text = list_description[animation_obtenue[0]];
+        if (upgrade_obtenue[0] != 0)
+        {
+            info.text = list_description[upgrade_obtenue[0] - 1];
+        }
     }
     public void upgrade2_info_montre()
     {
-        info.text = list_description[animation_obtenue[1]];
+        if (upgrade_obtenue[1] != 0)
+        {
+            info.text = list_description[upgrade_obtenue[1] - 1];
+        }
     }
     public void upgrade3_info_montre()
     {
-        info.text = list_description[animation_obtenue[2]];
+        if (upgrade_obtenue[2] != 0)
+        {
+            info.text = list_description[upgrade_obtenue[2] - 1];
+        }
     }
     public void upgrade4_info_montre()
     {
-        info.text = list_description[animation_obtenue[3]];
+        if (upgrade_obtenue[3] != 0)
+        {
+            info.text = list_description[upgrade_obtenue[3] - 1];
+        }
     }
     public void info_cache()
     {
