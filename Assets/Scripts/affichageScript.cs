@@ -197,7 +197,7 @@ public class affichageScript : MonoBehaviour
     {
         if (nbUpgrade == 1) // Recycle
         {
-            list_objet_lvl[0].GetComponent<Image>().sprite = list_lvl[upgradesManager.recyclingLevel - 1];
+            list_objet_lvl[0].GetComponent<Image>().sprite = list_lvl[upgradesManager.recyclingLevel];
             list_objet_lvl[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             upgradesManager.ChangeLevel("Recycle");
             list_slot[0].GetComponent<CanvasGroup>().alpha = 1;
@@ -205,7 +205,7 @@ public class affichageScript : MonoBehaviour
         }
         else if (nbUpgrade == 2) // Spray
         {
-            list_objet_lvl[1].GetComponent<Image>().sprite = list_lvl[upgradesManager.sprayLevel - 1];
+            list_objet_lvl[1].GetComponent<Image>().sprite = list_lvl[upgradesManager.sprayLevel];
             list_objet_lvl[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             upgradesManager.ChangeLevel("Spray");
             list_slot[1].GetComponent<CanvasGroup>().alpha = 1; /*new Color(255, 255, 255, 255);*/
@@ -214,7 +214,7 @@ public class affichageScript : MonoBehaviour
         else if (nbUpgrade == 3) // Gadget
         {
             upgradesManager.ChangeLevel("Gadget");
-            choix_3_impossible = upgradesManager.gadgetLevel == 5;
+            choix_3_impossible = upgradesManager.gadgetLevel == 4;
             list_slot[2].GetComponent<CanvasGroup>().alpha = 1;
             if (upgradesManager.gadgetLevel == 1)
             {

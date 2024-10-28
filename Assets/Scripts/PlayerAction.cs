@@ -178,8 +178,10 @@ public class PlayerAction : MonoBehaviour
         battery.ChangePower(-5);
     }
 
+
     public void Teleport()
     {
+
         Vector2 p = MapController.instance.background.CellToWorld(MapController.instance.MouseCellPos());
 
         Vector2 pos = new Vector2(p.x+0.4f,p.y+0.62f);
