@@ -6,6 +6,9 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+
+
+// allerrrrrrrrrrrrrrrrrrrr
 public class affichageScript : MonoBehaviour
 {
     private UpgradesManager upgradesManager;
