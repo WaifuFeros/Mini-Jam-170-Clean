@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BatteryManagement : MonoBehaviour
 {
@@ -7,6 +9,9 @@ public class BatteryManagement : MonoBehaviour
     private Animator animator;
     public int leftPower;
     public int maxPower;
+    [Min(0)] public float gameOverDelay = 3;
+    public int gameOverSceneIndex = 2;
+
     void Start ()
     {
         movement = GetComponent<Movement>();
@@ -22,11 +27,19 @@ public class BatteryManagement : MonoBehaviour
             animator.SetTrigger("Death");
             movement.isDead = true;
             // Fin de partie
+            StartCoroutine(GameOver());
         }
         else if(leftPower>maxPower)
             leftPower = maxPower;
         
         ui.ChangePower(leftPower, maxPower);
         return leftPower;
+    }
+
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(gameOverDelay);
+
+        SceneManager.LoadScene(gameOverSceneIndex);
     }
 }

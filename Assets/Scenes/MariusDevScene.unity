@@ -3317,10 +3317,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8098086751165925074, guid: bb4fde4fcad6a00409494303666179c7, type: 3}
-      propertyPath: invicible
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8098086751165925074, guid: bb4fde4fcad6a00409494303666179c7, type: 3}
       propertyPath: moveSpeed
       value: 3
       objectReference: {fileID: 0}

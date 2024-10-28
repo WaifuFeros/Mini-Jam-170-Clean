@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftPower: 10
   maxPower: 10
+  gameOverDelay: 1.5
+  gameOverSceneIndex: 2
 --- !u!1 &5021172460972031175
 GameObject:
   m_ObjectHideFlags: 0
