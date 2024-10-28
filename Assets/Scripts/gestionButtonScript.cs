@@ -4,7 +4,7 @@ public class gestionButtonScript : MonoBehaviour
 {
     public void starting()
     {
-        SceneManager.LoadScene("Scenes/SceneTest");
+        SceneManager.LoadScene("Scenes/MariusDevScene");
     }
     public void exiting()
     {
