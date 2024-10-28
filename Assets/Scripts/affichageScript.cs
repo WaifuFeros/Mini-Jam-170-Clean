@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -357,9 +358,10 @@ public class affichageScript : MonoBehaviour
         detrituSprite.gameObject.SetActive(true);
         detrituSprite.sprite = recycling;
     }
-    public void PrintDetrituMouseInfo((DetrituData,int) detrituData, int distance)
+    public void PrintDetrituMouseInfo((DetrituData,int,int) detrituData, int distance)
     {
         DetrituData detritu = detrituData.Item1;
+        Tile tile = detrituData.Item1.tiles[detrituData.Item3] as Tile;
 
         string infoText = "";
         if(detritu.type == "P")
@@ -380,7 +382,8 @@ public class affichageScript : MonoBehaviour
             movesText = "Press \"Space\" to recycle it";
 
         detrituInfo.text = infoText + "\n" + movesText;
-        
+        detrituSprite.gameObject.SetActive(true);
+        detrituSprite.sprite = tile.sprite;
     }
 
     public void PrintMovements(int mov)
