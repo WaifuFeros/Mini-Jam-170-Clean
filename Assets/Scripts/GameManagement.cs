@@ -12,8 +12,11 @@ public class GameManagement : MonoBehaviour
     {
         instance = this;
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
+<<<<<<< Updated upstream
         ui.PrintMovements(movements);
         ui.addScore(0);
+=======
+>>>>>>> Stashed changes
     }
 
     public Dictionary<string,(int,int)> itemFrequences = new Dictionary<string,(int,int)>
@@ -66,24 +69,24 @@ public class GameManagement : MonoBehaviour
     {
         if(movements%20==0) // Every 20 movements
         {
-            // if(itemFrequences["SO"].Item1<5)
-            //     itemFrequences["SO"] = (itemFrequences["SO"].Item1+1,itemFrequences["SO"].Item2);
+            if(itemFrequences["SO"].Item1<5)
+                itemFrequences["SO"] = (itemFrequences["SO"].Item1+1,itemFrequences["SO"].Item2);
             if(itemFrequences["SP"].Item1<5)
                 itemFrequences["SP"] = (itemFrequences["SP"].Item1+1,itemFrequences["SP"].Item2);
             
-            // if(itemFrequences["MO"].Item1<5)
-            //     itemFrequences["MO"] = (itemFrequences["MO"].Item1+1,itemFrequences["MO"].Item2);
+            if(itemFrequences["MO"].Item1<5)
+                itemFrequences["MO"] = (itemFrequences["MO"].Item1+1,itemFrequences["MO"].Item2);
             if(itemFrequences["MP"].Item1<5)
                 itemFrequences["MP"] = (itemFrequences["MP"].Item1+1,itemFrequences["MP"].Item2);
         }
         if(movements%30==0) // Every 30 movements 
         {
-            if(itemFrequences["SO"].Item2>2)
+            if(itemFrequences["SO"].Item2>1)
                 itemFrequences["SO"] = (itemFrequences["SO"].Item1,itemFrequences["SO"].Item2-1);
             if(itemFrequences["SP"].Item2>1)
                 itemFrequences["SP"] = (itemFrequences["SP"].Item1,itemFrequences["SP"].Item2-1);
             
-            if(itemFrequences["MO"].Item2>2)
+            if(itemFrequences["MO"].Item2>1)
                 itemFrequences["MO"] = (itemFrequences["MO"].Item1,itemFrequences["MO"].Item2-1);
             if(itemFrequences["MP"].Item2>1)
                 itemFrequences["MP"] = (itemFrequences["MP"].Item1,itemFrequences["MP"].Item2-1);

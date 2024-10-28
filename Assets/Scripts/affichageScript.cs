@@ -315,8 +315,9 @@ public class affichageScript : MonoBehaviour
             if(data.type == "P")
                 pieces++;
         }
+
         detrituInfo.text = $"Press \"Space\" to recycle.\nYou will gain {energy} power and {score} score"
-        + (pieces==0 ? "" : $"\nand {pieces} piece");
+        + (pieces==0 ? "" : $"and {pieces} pieces");
         detrituSprite.gameObject.SetActive(true);
         detrituSprite.sprite = recycling;
     }
@@ -327,8 +328,7 @@ public class affichageScript : MonoBehaviour
 
         string infoText = "";
         if(detritu.type == "P")
-            infoText = "Fragile piece that can be recycled to repair you and improve your abilities"
-            + $"\nDistance : " + (distance>0 ? $"{distance}" : $"Too far (need {-distance} more moves)");
+            infoText = "Piece that can be recycled to repair you and improve your abilities";
         else
         {
             infoText = 
