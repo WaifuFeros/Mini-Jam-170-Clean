@@ -12,11 +12,8 @@ public class GameManagement : MonoBehaviour
     {
         instance = this;
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
-<<<<<<< Updated upstream
         ui.PrintMovements(movements);
         ui.addScore(0);
-=======
->>>>>>> Stashed changes
     }
 
     public Dictionary<string,(int,int)> itemFrequences = new Dictionary<string,(int,int)>
