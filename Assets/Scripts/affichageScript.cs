@@ -49,7 +49,7 @@ public class affichageScript : MonoBehaviour
     public Image detrituSprite;
 
 
-    private int score = 0;
+    public static int score = 0;
     private int power = 0;
     private int indexSlot = 0;
     private int choice_3 = 0;
