@@ -10,6 +10,10 @@ public class Movement : MonoBehaviour
     private BatteryManagement battery;
     public PlayerAction action;
     public UpgradesManager upgradesManager;
+    private AudioSource audioSource;        // Référence à l'Audio Source
+
+    public AudioClip MovementClip;
+
     public bool isDead = false;
     public bool invicible;
     public float moveSpeed = 3f;            // Vitesse de déplacement
@@ -23,6 +27,7 @@ public class Movement : MonoBehaviour
         targetPosition = transform.position;
         animator = GetComponent<Animator>();
         upgradesManager = GetComponent<UpgradesManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -99,6 +104,7 @@ public class Movement : MonoBehaviour
         {
             GameManagement.instance.Action();
             isMoving = true;
+            audioSource.PlayOneShot(MovementClip);
         }
         else
         {

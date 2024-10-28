@@ -13,6 +13,11 @@ public class PlayerAction : MonoBehaviour
     private BatteryManagement battery;
     public GameObject sprayBullet;
     private UpgradesManager upgradesManager;
+    private AudioSource audioSource;
+
+    public AudioClip RecycleClip;
+    public AudioClip CleanClip;
+
     // Actions
     public bool wantDash = false;
     public bool wantTeleport = false;
@@ -23,6 +28,7 @@ public class PlayerAction : MonoBehaviour
         animator = GetComponent<Animator>();
         upgradesManager = GetComponent<UpgradesManager>();
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,6 +46,7 @@ public class PlayerAction : MonoBehaviour
                 {
                     foreach(var i in itemRecycle)
                         Recycle(i);
+                    audioSource.PlayOneShot(RecycleClip);
                 }
             }
             #endregion
@@ -131,6 +138,7 @@ public class PlayerAction : MonoBehaviour
 
     public void SprayBullet(Vector2Int dir, Transform shooter, int level)
     {
+        audioSource.PlayOneShot(CleanClip);
         Vector2 p = MapController.instance.background.CellToWorld(MapController.instance.background.WorldToCell(shooter.position));
         Vector2 pos = new Vector2(p.x+0.4f,p.y+0.4f);
         switch (level)
