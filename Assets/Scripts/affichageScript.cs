@@ -64,21 +64,21 @@ public class affichageScript : MonoBehaviour
     private List<GameObject> list_objet_lvl = new List<GameObject>();
     private List<Sprite> list_lvl = new List<Sprite>();
     private List<string> list_description = new List<string>() {
-        "Recycler te donne + 1 d'�nergie",
-        "Recycler ajoute la moiti� du score",
-        "Recycler te donner + 3 d'�nergie",
-        "Recycler ajoute la totalit� du score comme le nettoyage",
-        "bras articul� (permet de recycler un d�chet autour du joueur)",
-        "spray -> tir un projectile dans une direction au choix (1 power)",
-        "strong spray -> tir un projectile dans une direction en faisant toute la ligne/colonne",
-        "line spray -> pareil mais avec toute la ligne horizontale ou verticale",
-        "cross spray -> pareil mais avec la ligne horizontal ET verticale",
-        "combo spray -> pareil mais chaque item touch� REDECLENCHE une cross spray",
-        "bombe (fais -1 � tous les objets sur l'�cran) : coute jsp combien de power",
-        "propulseur (permet de Dash dans une direction jusqu'� rencontr� un mur",
-        "stronger bombe -> fais plus de d�g�ts",
-        "strong propulseur -> dash jusqu'� rencontrer un mur mais recycle tous les objets sur le chemin",
-        "t�l�porteur (permet de se t�l�porter n'importe o�) ---> coute BCP de power"
+        "Recycling gives you 1 power",
+        "Recycling gives you 2 power",
+        "Recycling gives you 2 power",
+        "Recycling adds to total score like cleaning",
+        "recycle waste around the player",
+        "fire a projectile in any direction (1 power)",
+        "shoot a projectile in any direction and through anything",
+        "shoot a projectile in vertical or horizontal through anything",
+        "shoot a projectile in vertical and horizontal through anything",
+        "shoot a projectile in vertical and horizontal through anything and spawn new one",
+        "clean everything of 1 point",
+        "propels you in one direction until you hit a wall",
+        "clean everything",
+        "propels you in one direction until you hit a wall and clean in your path",
+        "teleports you wherever you want"
     };
 
     private void Start()

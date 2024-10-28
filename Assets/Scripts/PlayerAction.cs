@@ -65,7 +65,7 @@ public class PlayerAction : MonoBehaviour
             #region Dash action (Input Mouse button or Shortcut H)
             if(Input.GetKey(KeyCode.H) && upgradesManager.gadgetLevel>=2)
             {
-                wantDash = true;
+                Dash();
                 // See movement script where the dash is managed
             }
             #endregion
@@ -83,6 +83,11 @@ public class PlayerAction : MonoBehaviour
         }
 
     }
+    public void Dash()
+    {
+        wantDash = true;
+    }
+
 
     public void Recycle(Vector3Int targetPos, bool anim = true)
     {

@@ -71,6 +71,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1909574954838256606}
+  action: {fileID: 0}
+  upgradesManager: {fileID: 0}
+  isDead: 0
+  invicible: 0
   moveSpeed: 5
   isMoving: 0
 --- !u!114 &1410737911838152614
@@ -85,8 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73945fb288b3e3f4c979321897481bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
   sprayBullet: {fileID: 0}
+  wantDash: 0
+  wantTeleport: 0
 --- !u!114 &7763886689280797244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a451c41a9174f3b4c9163b297f174f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
   leftPower: 10
   maxPower: 10
 --- !u!1 &5021172460972031175
