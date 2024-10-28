@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BatteryManagement : MonoBehaviour
 {
-    private affichageScript ui;
+    public affichageScript ui;
     private Movement movement;
     private Animator animator;
     public int leftPower;

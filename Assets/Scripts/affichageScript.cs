@@ -41,8 +41,6 @@ public class affichageScript : MonoBehaviour
     public Sprite dash;
     public Sprite tp;
     public Sprite croix;
-    public Sprite recycling;
-    public Image detrituSprite;
 
 
     private int score = 0;
@@ -358,7 +356,7 @@ public class affichageScript : MonoBehaviour
         detrituSprite.gameObject.SetActive(true);
         detrituSprite.sprite = recycling;
     }
-    public void PrintDetrituMouseInfo((DetrituData,int,int) detrituData, int distance)
+    public void PrintDetrituMouseInfo((DetrituData,int) detrituData, int distance)
     {
         DetrituData detritu = detrituData.Item1;
         Tile tile = detrituData.Item1.tiles[detrituData.Item3] as Tile;
@@ -382,8 +380,12 @@ public class affichageScript : MonoBehaviour
             movesText = "Press \"Space\" to recycle it";
 
         detrituInfo.text = infoText + "\n" + movesText;
+<<<<<<< HEAD
         detrituSprite.gameObject.SetActive(true);
         detrituSprite.sprite = tile.sprite;
+=======
+        
+>>>>>>> parent of 642bb6e (ahhh)
     }
 
     public void PrintMovements(int mov)

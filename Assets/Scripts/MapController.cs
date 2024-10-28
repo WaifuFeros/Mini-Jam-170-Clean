@@ -8,12 +8,12 @@ using UnityEngine.Tilemaps;
 public class MapController : MonoBehaviour
 {
     public static MapController instance;
-    private affichageScript ui;
+    public affichageScript ui;
     public Tilemap background;
     public Tilemap detritus;
     public Transform player;
     private PlayerAction playerAction;
-    public (DetrituData,int,int)[,] itemsGrid; 
+    public (DetrituData,int)[,] itemsGrid; 
     public Vector3Int playerCellPos;
     public int mapActualLength;
     public int mapMaxLength;
@@ -28,8 +28,12 @@ public class MapController : MonoBehaviour
         MapInit(mapActualLength);
         playerCellPos = Vector3Int.one * mapActualLength/2;
         playerAction = player.GetComponent<PlayerAction>();
+<<<<<<< HEAD
         itemsGrid = new (DetrituData,int,int)[mapMaxLength+1,mapMaxLength+1];
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
+=======
+        itemsGrid = new (DetrituData,int)[mapMaxLength+1,mapMaxLength+1];
+>>>>>>> parent of 642bb6e (ahhh)
     }
 
     public void MapInit(int newLength)
@@ -97,7 +101,10 @@ public class MapController : MonoBehaviour
         itemsGrid[cellPos.x, cellPos.y].Item2 -= strength;
         if(itemsGrid[cellPos.x, cellPos.y].Item2<=0)
         {
+<<<<<<< HEAD
             ui.addScore(itemsGrid[cellPos.x, cellPos.y].Item1.score);
+=======
+>>>>>>> parent of 642bb6e (ahhh)
             RemoveItem(cellPos);
         }
     }

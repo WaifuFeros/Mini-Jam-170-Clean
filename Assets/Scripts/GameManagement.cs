@@ -6,11 +6,18 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     public static GameManagement instance;
+<<<<<<< HEAD
     private affichageScript ui;
     void Awake()
     {
         instance = this;
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<affichageScript>();
+=======
+    public affichageScript ui;
+    void Awake()
+    {
+        instance = this;
+>>>>>>> parent of 642bb6e (ahhh)
     }
 
     public int movements = 0; // Player movements count 

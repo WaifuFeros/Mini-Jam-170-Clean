@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAction : MonoBehaviour
 {
-    private affichageScript ui;
+    public affichageScript ui;
     private Movement mvt;
     private Animator animator;              // Référence a l'Animator
     private BatteryManagement battery;
