@@ -2154,8 +2154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5c970ec4587f740a4c6299064de2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recyclingLevel: 1
-  sprayLevel: 1
+  recyclingLevel: 0
+  sprayLevel: 0
   gadgetLevel: 0
 --- !u!1 &485600630
 GameObject:
@@ -2316,6 +2316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa0f86f380f3754899c4c770591944b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 2115336264}
   background: {fileID: 85411865}
   detritus: {fileID: 2061125285}
   player: {fileID: 115079080}
@@ -2338,6 +2339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185fe596be62094419329c833b4df19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 0}
   movements: 0
   detritus:
   - {fileID: 11400000, guid: f37b1001779332d49bff840a84789c0a, type: 2}
@@ -2360,6 +2362,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 148808941}
+    - target: {fileID: 26595077825104049, guid: 445a657357dc4d14c941817456f3063d, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1944671562190978585, guid: 445a657357dc4d14c941817456f3063d, type: 3}
       propertyPath: m_Name
       value: UI (1)
@@ -2444,14 +2450,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7220685075629644579, guid: 445a657357dc4d14c941817456f3063d, type: 3}
-      propertyPath: recycling
-      value: 
-      objectReference: {fileID: 21300000, guid: 62dead6e34e57954a81c03d5d49d4204, type: 3}
-    - target: {fileID: 7220685075629644579, guid: 445a657357dc4d14c941817456f3063d, type: 3}
-      propertyPath: detrituSprite
-      value: 
-      objectReference: {fileID: 1795935869}
+    - target: {fileID: 6125442572177102747, guid: 445a657357dc4d14c941817456f3063d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7619951099024516160, guid: 445a657357dc4d14c941817456f3063d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -960.00006
@@ -2830,17 +2832,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1795935869 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7569333895200839126, guid: 445a657357dc4d14c941817456f3063d, type: 3}
-  m_PrefabInstance: {fileID: 880452483}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2061125282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,6 +2996,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe04453b187da3a4694f844574648915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2115336264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7220685075629644579, guid: 445a657357dc4d14c941817456f3063d, type: 3}
+  m_PrefabInstance: {fileID: 880452483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67898e328cd9ba346a52056142f18a57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &832011043960726975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3100,10 +3102,6 @@ PrefabInstance:
     - target: {fileID: 7763886689280797244, guid: bb4fde4fcad6a00409494303666179c7, type: 3}
       propertyPath: ui
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8098086751165925074, guid: bb4fde4fcad6a00409494303666179c7, type: 3}
-      propertyPath: invicible
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8098086751165925074, guid: bb4fde4fcad6a00409494303666179c7, type: 3}
       propertyPath: moveSpeed
