@@ -612,6 +612,7 @@ RectTransform:
   - {fileID: 6802701254810974264}
   - {fileID: 6496963895876250854}
   - {fileID: 6834607591857259886}
+  - {fileID: 7190925255187225555}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -709,10 +710,22 @@ MonoBehaviour:
   upgrade_choice_2: {fileID: 2828347156715424723}
   upgrade_choice_3: {fileID: 40501099002974154}
   panel: {fileID: 526765994463648914}
+  objet_1_lvl: {fileID: 4290501865560935785}
+  objet_2_lvl: {fileID: 740372201725613008}
+  objet_3_lvl: {fileID: 2821425035668660623}
+  objet_4_lvl: {fileID: 8435847905054496546}
+  objet_5_lvl: {fileID: 7228473235457042733}
+  upgrade_lvl_1: {fileID: 0}
+  upgrade_lvl_2: {fileID: 0}
+  upgrade_lvl_3: {fileID: 0}
+  upgrade_lvl_4: {fileID: 0}
+  upgrade_lvl_5: {fileID: 0}
   bombe: {fileID: 21300000, guid: 50203fdf9ac529949ba448915bfe53eb, type: 3}
   dash: {fileID: -5247759904997254191, guid: 58a214d5695babc45bbe5da01de5003c, type: 3}
   tp: {fileID: 1576680246992455245, guid: b618329f1254fdb4ebb834c42b10371d, type: 3}
   croix: {fileID: -7764659627971493248, guid: a78e46971261a2442a537a9c0e234d77, type: 3}
+  recycling: {fileID: 0}
+  detrituSprite: {fileID: 0}
 --- !u!1 &2422976935976946848
 GameObject:
   m_ObjectHideFlags: 0
