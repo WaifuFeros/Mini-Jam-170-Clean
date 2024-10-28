@@ -92,9 +92,8 @@ public class MapController : MonoBehaviour
 
     public void Cleaned(Vector3Int cellPos, int strength)
     {
-        (DetrituData, int,int) item = itemsGrid[cellPos.x, cellPos.y];
         itemsGrid[cellPos.x, cellPos.y].Item2 -= strength;
-        if(item.Item2<=0)
+        if(itemsGrid[cellPos.x, cellPos.y].Item2<=0)
         {
             ui.addScore(itemsGrid[cellPos.x, cellPos.y].Item1.score);
             RemoveItem(cellPos);
