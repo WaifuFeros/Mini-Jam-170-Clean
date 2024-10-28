@@ -40,6 +40,8 @@ public class affichageScript : MonoBehaviour
     public Sprite dash;
     public Sprite tp;
     public Sprite croix;
+    public Sprite recycling;
+    public Image detrituSprite;
 
 
     private int score = 0;
@@ -57,21 +59,21 @@ public class affichageScript : MonoBehaviour
     private List<GameObject> list_objet_lvl = new List<GameObject>();
     private List<Sprite> list_lvl = new List<Sprite>();
     private List<string> list_description = new List<string>() {
-        "Recycler te donne + 1 d'énergie",
-        "Recycler ajoute la moitié du score",
-        "Recycler te donner + 3 d'énergie",
-        "Recycler ajoute la totalité du score comme le nettoyage",
-        "bras articulé (permet de recycler un déchet autour du joueur)",
+        "Recycler te donne + 1 d'ï¿½nergie",
+        "Recycler ajoute la moitiï¿½ du score",
+        "Recycler te donner + 3 d'ï¿½nergie",
+        "Recycler ajoute la totalitï¿½ du score comme le nettoyage",
+        "bras articulï¿½ (permet de recycler un dï¿½chet autour du joueur)",
         "spray -> tir un projectile dans une direction au choix (1 power)",
         "strong spray -> tir un projectile dans une direction en faisant toute la ligne/colonne",
         "line spray -> pareil mais avec toute la ligne horizontale ou verticale",
         "cross spray -> pareil mais avec la ligne horizontal ET verticale",
-        "combo spray -> pareil mais chaque item touché REDECLENCHE une cross spray",
-        "bombe (fais -1 à tous les objets sur l'écran) : coute jsp combien de power",
-        "propulseur (permet de Dash dans une direction jusqu'à rencontré un mur",
-        "stronger bombe -> fais plus de dégâts",
-        "strong propulseur -> dash jusqu'à rencontrer un mur mais recycle tous les objets sur le chemin",
-        "téléporteur (permet de se téléporter n'importe où) ---> coute BCP de power"
+        "combo spray -> pareil mais chaque item touchï¿½ REDECLENCHE une cross spray",
+        "bombe (fais -1 ï¿½ tous les objets sur l'ï¿½cran) : coute jsp combien de power",
+        "propulseur (permet de Dash dans une direction jusqu'ï¿½ rencontrï¿½ un mur",
+        "stronger bombe -> fais plus de dï¿½gï¿½ts",
+        "strong propulseur -> dash jusqu'ï¿½ rencontrer un mur mais recycle tous les objets sur le chemin",
+        "tï¿½lï¿½porteur (permet de se tï¿½lï¿½porter n'importe oï¿½) ---> coute BCP de power"
     };
 
     private void Start()
@@ -351,13 +353,9 @@ public class affichageScript : MonoBehaviour
                 pieces++;
         }
         detrituInfo.text = $"Press \"Space\" to recycle.\nYou will gain {energy} power and {score} score"
-<<<<<<< HEAD
-        + (pieces==0 ? "" : $"and {pieces} pieces");
-=======
         + (pieces==0 ? "" : $"\nand {pieces} piece");
         detrituSprite.gameObject.SetActive(true);
         detrituSprite.sprite = recycling;
->>>>>>> parent of 801de7e (Revert "Merge branch 'main' of https://github.com/WaifuFeros/Mini-Jam-170-Clean")
     }
     public void PrintDetrituMouseInfo((DetrituData,int) detrituData, int distance)
     {
