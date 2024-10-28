@@ -709,11 +709,11 @@ MonoBehaviour:
   upgrade_choice_2: {fileID: 2828347156715424723}
   upgrade_choice_3: {fileID: 40501099002974154}
   panel: {fileID: 526765994463648914}
-  objet_1_lvl: {fileID: 4290501865560935785}
-  objet_2_lvl: {fileID: 740372201725613008}
-  objet_3_lvl: {fileID: 2821425035668660623}
-  objet_4_lvl: {fileID: 8435847905054496546}
-  objet_5_lvl: {fileID: 7228473235457042733}
+  objet_1_lvl: {fileID: 0}
+  objet_2_lvl: {fileID: 0}
+  objet_3_lvl: {fileID: 0}
+  objet_4_lvl: {fileID: 0}
+  objet_5_lvl: {fileID: 0}
   upgrade_lvl_1: {fileID: 0}
   upgrade_lvl_2: {fileID: 0}
   upgrade_lvl_3: {fileID: 0}
@@ -1402,7 +1402,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5789154302116217058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1713542488861195412
 MonoBehaviour:
   m_ObjectHideFlags: 0
