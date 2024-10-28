@@ -197,36 +197,36 @@ public class affichageScript : MonoBehaviour
     {
         if (nbUpgrade == 1) // Recycle
         {
-            list_objet_lvl[0].GetComponent<Image>().sprite = list_lvl[upgradesManager.recyclingLevel];
+            list_objet_lvl[0].GetComponent<Image>().sprite = list_lvl[upgradesManager.recyclingLevel - 1];
             list_objet_lvl[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             upgradesManager.ChangeLevel("Recycle");
-            list_slot[0].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            list_slot[0].GetComponent<CanvasGroup>().alpha = 1;
             choix_1_impossible = upgradesManager.recyclingLevel == 5;
         }
         else if (nbUpgrade == 2) // Spray
         {
-            list_objet_lvl[1].GetComponent<Image>().sprite = list_lvl[upgradesManager.sprayLevel];
+            list_objet_lvl[1].GetComponent<Image>().sprite = list_lvl[upgradesManager.sprayLevel - 1];
             list_objet_lvl[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
             upgradesManager.ChangeLevel("Spray");
-            list_slot[1].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            list_slot[1].GetComponent<CanvasGroup>().alpha = 1; /*new Color(255, 255, 255, 255);*/
             choix_2_impossible = upgradesManager.sprayLevel == 5;
         }
         else if (nbUpgrade == 3) // Gadget
         {
             upgradesManager.ChangeLevel("Gadget");
             choix_3_impossible = upgradesManager.gadgetLevel == 5;
-            list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            list_slot[2].GetComponent<CanvasGroup>().alpha = 1;
             if (upgradesManager.gadgetLevel == 1)
             {
                 list_objet_lvl[2].GetComponent<Image>().sprite = list_lvl[0];
                 list_objet_lvl[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
-                list_slot[2].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                list_slot[2].GetComponent<CanvasGroup>().alpha = 1;
             }
             if (upgradesManager.gadgetLevel == 2)
             {
                 list_objet_lvl[3].GetComponent<Image>().sprite = list_lvl[0];
                 list_objet_lvl[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
-                list_slot[3].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                list_slot[3].GetComponent<CanvasGroup>().alpha = 1;
             }
             if (upgradesManager.gadgetLevel == 3)
             {
@@ -240,7 +240,7 @@ public class affichageScript : MonoBehaviour
             {
                 list_objet_lvl[4].GetComponent<Image>().sprite = list_lvl[0];
                 list_objet_lvl[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
-                list_slot[4].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                list_slot[4].GetComponent<CanvasGroup>().alpha = 1;
             }
         }
         if (choix_1_impossible) { upgrade_choice_1.GetComponent<Image>().sprite = croix; }
