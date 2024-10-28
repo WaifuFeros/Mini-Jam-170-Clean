@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: MO
   tiles:
-  - {fileID: 11400000, guid: e7b2497f2a998ef4cb5412edbeadc03e, type: 2}
+  - {fileID: 11400000, guid: 81d81ca270ed8894997fe9028c77a588, type: 2}
   spawnZone: 1
   origin: {x: -1, y: -1, z: 0}
   life: 2

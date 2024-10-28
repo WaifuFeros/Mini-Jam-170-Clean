@@ -95,8 +95,19 @@ public class PlayerAction : MonoBehaviour
         }
         else
         {
-            battery.ChangePower(detritu.energy);
-            ui.addScore(detritu.score);
+            int add = 0; 
+            int score = 0;
+            if(upgradesManager.recyclingLevel>=4)
+                score = detritu.score;
+            else if(upgradesManager.recyclingLevel>=2)
+                score = detritu.score/2;
+
+            if(upgradesManager.recyclingLevel>=3)
+                add = 3;
+            else if(upgradesManager.recyclingLevel>=1)
+                add = 1;
+            battery.ChangePower(detritu.energy + add);
+            ui.addScore(score);
         }
         GameManagement.instance.Action();
     }
@@ -155,7 +166,8 @@ public class PlayerAction : MonoBehaviour
         for(int y=0; y<MapController.instance.itemsGrid.GetLength(1); y++)
             for(int x=0; x<MapController.instance.itemsGrid.GetLength(0); x++)    
             {
-                MapController.instance.Cleaned(new Vector3Int(x,y), damages);
+                if(MapController.instance.itemsGrid[x, y].Item1 != null)
+                    MapController.instance.Cleaned(new Vector3Int(x,y), damages);
             }
         
         battery.ChangePower(-5);
